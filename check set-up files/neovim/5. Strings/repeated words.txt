@@ -1,0 +1,36 @@
+eleven	one	one	thirteen		thirteen
+twelve	two	two	fourteen		fourteen
+thirteen	three	three	fifteen		fifteen
+fourteen	four	four	sixteen		sixteen
+fifteen	five	five	seventeen		seventeen
+sixteen	six	six	eighteen		eighteen
+two	seven	seven	nineteen		nineteen
+three	eight	eight	three		twenty one
+four	nine	nine	four		twenty one
+five	ten	ten	five		twenty two
+six		six	six		twenty three
+seven		seven	seven		thirteen
+eight		eight	eight		fourteen
+nine		nine	nine		fifteen
+ten		ten	ten		sixteen
+eleven		eleven	eleven		seventeen
+twelve		twelve	twelve		eighteen
+thirteen		thirteen	thirteen		nineteen
+fourteen		fourteen	fourteen		twenty one
+fifteen		fifteen	fifteen		twenty one
+sixteen		sixteen	sixteen		twenty two
+seventeen		seventeen	seventeen		twenty three
+eighteen		eighteen	eighteen		thirteen
+nineteen		nineteen	nineteen		fourteen
+twenty one		twenty one	twenty one		fifteen
+twenty one		twenty one	twenty one		sixteen
+twenty two		twenty two	twenty two		seventeen
+twenty three		twenty three	twenty three		eighteen
+twenty four		twenty four	twenty four		nineteen
+twenty five		twenty five	twenty five		twenty one
+twenty six		twenty six	twenty six		twenty one
+twenty seven		twenty seven	twenty seven		twenty two
+twenty eight		twenty eight	twenty eight		twenty three
+twenty nine		twenty nine	twenty nine		
+thirty one		thirty one	thirty one	
+
