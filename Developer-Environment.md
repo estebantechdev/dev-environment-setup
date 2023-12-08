@@ -3582,7 +3582,7 @@ Go to any inner character of the word or object to replace.
 <br />Type in the **word replacement**.
 <br />Press `ESC` to return to the **NORMAL** mode.
 
-Note: Thre will be more alternatives to these commands with the neovim plugins.
+Note: There will be more alternatives to these commands with the neovim plugins.
 
 ##### Identify the current line of code (NORMAL mode)
 
@@ -3618,6 +3618,500 @@ Option 1:
 Option 2:
 <br />Check out the section: **History buffers (NORMAL mode)**, to move back or forward in history.
 
+##### Go down or up in the text
+
+Options:
+
+With the option enabled, the cursor moves text up or down when reaches less lines than the value established in the option.
+
+```vim
+set scrolloff=5             " Determines the number of context lines above and
+                            " below the cursor.
+```
+With `CTRL` + `D` the text moves down.
+
+With `CTRL` + `D` the text moves up.
+
+With `SHIFT` + `UP` the text moves UP one page.
+
+With `SHIFT` + `DOWN` the text moves down one page.
+
+Use of number and arrow, E.g.: `10` + `j`.
+
+##### Move cursor to end or the beginning of file in Neovim (NORMAL mode)
+
+Press `SHIFT` + `G` to move cursor to the last line of the file.
+<br />Press `ESC` + `CTRL` + `END` to jump to the end of file to the last character of the line.
+<br />Hit `ESC` + `CTRL` + `HOME` to jump to the start of file to the last character of the line.
+<br />Press `ESC` + `gg` to go to top the file. It remembers previous cursor positions if moved out of that first line using `ARROWS`.
+<br />Press `ESC` + `G` to go to bottom of the file. It remembers previous cursor positions (`h`, `j`, `k`, `l`).
+<br />Press `ESC` + `G` + `A` to go to bottom of the file and in append text mode. In other words, jump to last line and start writing code/text.
+
+##### Neovim tasks compared to VS Code tasks
+
+References:
+<br />How does Vim compare to a modern text editor such as VS Code? (Response to DistroTube’s Vim video):
+<br />Video: <https://m.youtube.com/watch?v=8EKK7b5h7XE>
+
+Task: Moving lines around:
+- Neovim: In **NORMAL mode**, press `dd` to delete current line , and `p` to pu the text after cursor.
+- VS Code: `CTRL` + `x` to cut the text, and `CTRL` + `v` to paste the text above the cursos.
+
+Task: Swap the current line with the next line:
+- Neovim: Press `ddp`.
+- VS Code: To move the line up, press `ALT` + `UpArrow`, and to move the line dowm, press `ALT` + `DownArrow`. You can select multiple lines and move them around.
+
+Task: Move a word to another place, for example move the word Hello to the end of the file.
+- Neovim: The 12 Steps:
+<br />1 In **NORMAL mode** Press `/` to search the word (or use an alternative such as easy motion.)
+<br />2 Type in the word to search for.
+<br />3 Press `Enter` to select the word.
+<br />4 Press `viw` to copy the word.
+<br />5 Press `y` to copy the word.
+<br />6 Press `G` to go to the bottom of the file.
+<br />7 Press `I` to go to the beginning of the line in INSERT mode. Or, press `0` and then press `i`.
+<br />8 Press `SPACE BAR` to be able to paste the text at the beginning of the line.
+<br />9 Press `ESC` + `ESC` to go to **NORMAL mode**.
+<br />10 Press `p` to paste the word copied.
+<br />11 Press `I` to go to the beginning of the line in INSERT mode.
+<br />12 Press `BACKSPACE` to remove the blank space at the beginning of the line.
+- VS Code: Copy or cut the selected text. Go to the end of the file. Paste the text copied. Swap the lines as needed.
+
+Task: Similarly to the previous task, but copy the complete line and put it somewhere else, for example, at a new line at the end of the file.
+<br />Neovim: Steps:
+<br /> The step 4 is: press `V` to enter the **VISUAL mode**.
+<br /> The step 5 is: press `y` to copy the complete line.
+<br /> The step 7 (and the final ste, btw) is: press `p` to paste the line copied one line below from cursor position.
+<br />VS Code: Do it manually, by using copy/cut and then paste, or swapping down many times your selected line.
+
+Task: Go to the last cursor position:
+- Neovim: Options:
+<br /> `'.`: Jump to last modification line.
+<br />.+BACKTICK-SIGN: Jump to exact spot in last modification line.
+<br />`CTRL-O`: Retrace your movements in file in backwards. Test logging movements with text searches "/" several times.
+<br />`CTRL-I`: Retrace your movements in file in forwards. Test logging movements with text searches "/" several times.
+<br />Note: Jumps are remembered in a jump list. With the CTRL-O and CTRL-I command you can go to cursor positions before older jumps, and back again. Thus you can move up and down the list. There is a separate jump list for each window. The maximum number of entries is fixed at 100.
+- VS Code: Go back with `ALT` + `LEFT ARROW`, and go forward with `ALT` + `RIGHT ARROW`. You can go to the definition of a word or function, by using: `CTRL` + `SHIFT` + `O`.
+
+Note: It works along multiple files which could come in handy if want to switch among multiple files a lot.
+
+Task: Indenting multiple lines:
+- Neovim: Steps:
+<br />Switch to **COMMAND mode** with `SHIFT` + `:`.
+<br />Type in the range of lines to indent, from the first to the end, for example to indent the lines from 19 27 of the file **quoted strings.txt** do:
+
+```vim
+:19,27>
+```
+
+Then press `ENTER`.
+- VS Code: Select the text to indent with the `mouse`, then press `TAB`.
+
+Task: Remove the opening quotes from a list of quoted strings: 
+<br />Example: File: **quoted strings.txt**
+
+```code
+"one"
+"two"
+"three"
+"four"
+"five"
+"six"
+"seven"
+"eight"
+"nine"
+"ten"
+"eleven"
+"twelve"
+"thirteen"
+"fourteen"
+"fifteen"
+"sixteen"
+"seventeen"
+"eighteen"
+"nineteen"
+"twenty"
+"twenty one"
+"twenty two"
+"twenty three"
+"twenty four"
+"twenty five"
+"twenty six"
+"twenty seven"
+"twenty eight"
+"twenty nine"
+"thirty"
+"thirty one"
+
+```
+
+- Neovim: Steps:
+<br />Go to the start line/point.
+<br />Press `0` to go to the first character of the line, for example, an opening double quote `"`.
+<br />Press `CTRL` + `v` to enter the **VISUAL BLOCK mode**.
+<br />Use directions `h`, `j`, `k`, `l`, to select other opening quotes of some lines down. For example, use `j` or `5j` to select 5 lines down.
+<br />Type `d` or `CTRL` + `i` to delete the selected opening quotes from the lines. All the opening quotes are gone.
+
+Task: Remove the closing quotes from a list of quoted strings (**with macros**): 
+- Neovim: Steps:
+<br />Go one line before the start line/point, for example to the line 9, containing a string "nine".
+<br />Record a macro:
+<br />Press `q`.
+<br />Press `2` to record a register "2".
+<br />The message "recording @2" appears in the **modes bar**. So everything I do from now on is a recorded macro.
+<br />Press `j` to go down one line (to the 10th line).
+<br />Press `$` to go to the end of the line to the last character, for example, a closing double quote `"`.
+<br />Press `x` to delete the closing double quote of your first line where you want to remove.
+<br />Press `q` to stop recording the macro.
+<br />Run the macro:
+<br />You need to know exactly how many times run it, from line to line. Use the line numbers as reference. So, for example if you started recording in the line 9, the macro recording used the line 10th, so you wanted to delete the closing quotes from the line 11 to the line 20 (10 times):
+Type in `10@2`.
+<br />Note: If you want to manually/line-by-line delete both double quotes at the beginning and the end of every string, you can use a combination of the commands `ds"` (plugin surround.vim) and the repeat command `.` (activated for **surround.vim** thanks to the plugin **repeat.vim**.)
+- VS Code:
+<br />Go to the first line of the code to modify. You can use `HOME` key.
+<br />Select the block of code with double quotes to be removed, by using the "Column Selection Mode" `CTRL` + `SHIFT` + `DOWN ARROW`.
+<br />Press `DELETE` key to remove the first double quotes of all the lines.
+<br />Press `END` key to go the end of every line of the block of code selected.
+<br />Press `DELETE` key or `BACKSPACE` key to delete the last character of every line of the selected block of code, which are the closing double quotes.
+<br />Press `ESC` to exit the multiline selection status.
+
+Task: Add opening quotes to a list of strings without quotes:
+
+Example file: **strings no quotes.txt**:
+
+```vim
+one
+two
+three
+four
+five
+six
+seven
+eight
+nine
+ten
+eleven
+twelve
+thirteen
+fourteen
+fifteen
+sixteen
+seventeen
+eighteen
+nineteen
+twenty
+twenty one
+twenty two
+twenty three
+twenty four
+twenty five
+twenty six
+twenty seven
+twenty eight
+twenty nine
+thirty
+thirty one
+
+```
+
+- Neovim: Steps:
+<br />In the file **strings no quotes.txt**.
+<br />Press `gg` to go to the first line of the file.
+<br />Press `$` to go to the first character of the file.
+<br />Press `CTRL` + `v` to go into **VISUAL BLOCK mode (V-MODE)**.
+<br />Press `30j` to select all the first characters of the strings from the line 1 (current line) to 30 (30 times, use the line numbers as your reference.)
+<br />Press `SHIFT` + `I` to access the **INSERT mode**. The insert cursor appears before the currently selected character (the first character of the line) in the first line of the selected block.
+<br />Press `"` as the character to be inserted. Actually, it could be any desired character.
+<br />Press `ESC` `ESC` to apply the insertion in all the selected block lines.
+
+<br />Alternatively, you can repeat the action, by pressing `.` in **NORMAL** mode.
+<br />This procedure cannot done with the plugin **surround.vim (vim-surround)** key shorcuts due to it works on single lines with html like marks.
+
+Task: Add closing quotes to a list of string without closing quotes:
+
+<br />Steps to ADD the last character of every selected "column" (closing double quotes) using macros:
+<br />Press `gg` to go tot the first line of the file.
+<br />Press `q2` to start recording the macro in the register '2'.
+<br />Press `j` to go down one line.
+<br />Press `SHIFT` + `A` to change to append text at the end of the line in **INSERT mode**.
+<br />Press `"` to add the new symbol at the end of the line (closing double quote.)
+<br />Press `ESC` to go back to the **NORMAL mode**.
+<br />Press `q` to stop recording the macro.
+<br />Type in the times to run the registered macro from that position:
+<br/> `29@2`.
+- VS Code:
+<br />Select the block of code (the lines required), by using the "Column Selection Mode" `CTRL` + `SHIFT` + `DOWN ARROW`.
+<br />Press `SHIFT` + `END` to make the selection cover each line fully.
+<br />Press `"` to add double quotes to every string in every line of the text selected.
+
+Task: Change the next search of a word:
+- Neovim" Steps:
+<br />Using the file **strings no quotes.txt**.
+<br />Press `/` to start a search.
+<br />Type in `one` to search the word "one".
+<br />Press `ENTER`. It makes you come back to **NORMAL mode** and selects the next search match, equals `twenty one`.
+<br />Type in `cgn` to remove the searched selection.
+<br />Type in the **searched selection replacement**.
+<br />I can do search multiple times to replace every instance one at a time. A simple way to do the job is by the repeat key `.` in **NORMAL mode** It also starts from the beginning of the document when you reached the end of it.
+<br />Press `ESC` to enter the **NORMAL mode**.
+- VS Code: Steps:
+<br />Search for the word "one".
+<br />Press `ENTER` to skip the first match.
+<br />Press `ESC` to finish searching.
+<br />Press `CTRL` + `d` several times to select more occurrences.
+<br />Finally, edit all the matches all simultaneously.
+
+Task: **USING PATTERNS**, search for the first occurrence of the string ‘one’ in the current line and replace it with ‘billion’ if there is a match:
+
+You can use the sample file **repeated words.txt**:
+
+```code
+eleven	one	one	thirteen		thirteen
+twelve	two	two	fourteen		fourteen
+thirteen	three	three	fifteen		fifteen
+fourteen	four	four	sixteen		sixteen
+fifteen	five	five	seventeen		seventeen
+sixteen	six	six	eighteen		eighteen
+two	seven	seven	nineteen		nineteen
+three	eight	eight	three		twenty one
+four	nine	nine	four		twenty one
+five	ten	ten	five		twenty two
+six		six	six		twenty three
+seven		seven	seven		thirteen
+eight		eight	eight		fourteen
+nine		nine	nine		fifteen
+ten		ten	ten		sixteen
+eleven		eleven	eleven		seventeen
+twelve		twelve	twelve		eighteen
+thirteen		thirteen	thirteen		nineteen
+fourteen		fourteen	fourteen		twenty one
+fifteen		fifteen	fifteen		twenty one
+sixteen		sixteen	sixteen		twenty two
+seventeen		seventeen	seventeen		twenty three
+eighteen		eighteen	eighteen		thirteen
+nineteen		nineteen	nineteen		fourteen
+twenty one		twenty one	twenty one		fifteen
+twenty one		twenty one	twenty one		sixteen
+twenty two		twenty two	twenty two		seventeen
+twenty three		twenty three	twenty three		eighteen
+twenty four		twenty four	twenty four		nineteen
+twenty five		twenty five	twenty five		twenty one
+twenty six		twenty six	twenty six		twenty one
+twenty seven		twenty seven	twenty seven		twenty two
+twenty eight		twenty eight	twenty eight		twenty three
+twenty nine		twenty nine	twenty nine		
+thirty one		thirty one	thirty one		
+
+```
+
+- Neovim:
+
+```vim
+:s/one/billion/
+```
+
+Press `ENTER` to apply changes or `ESC` to revert them.
+
+Task: **USING PATTERNS**, Replace all occurrences of the search pattern in the current line.
+- Neovim: 
+Add the **g flag**, like this:
+
+```vim
+:s/one/billion/g
+```
+
+Press `ENTER` to apply changes or `ESC` to revert them.
+
+Task: **USING PATTERNS**, search and replace the pattern in the entire file.
+- Neovim:
+Use the percentage character **%** as a range from the first line to the last line of the file. **Without the flag g** it is going to replace only the first ocurrence of the lines matching the pattern. **With the flag g**, it is going to replace all the matching ocurrences in the entire file. 
+
+```vim
+:%s/one/billion/
+:%s/one/billion/g
+```
+
+Task: **USING PATTERNS**, delete all instances of the string ‘one’ in the current line.
+- Neovim:
+Use the {pattern} part, but avoid using the {string} part:
+
+```vim
+:s/one//g
+```
+
+Note:
+<br />Instead of the slash character (/), you can **use any other non-alphanumeric single-byte character except as a delimiter**. This option is useful **when you have the ‘/’ character in the search pattern or the replacement string**.
+
+```vim
+:s|one|billion|
+```
+
+Note:
+<br />To **confirm each substitution**, use the c flag:
+
+```vim
+:s/one/billion/gc
+:%s/one/billion/gc
+```
+
+Task: **USING PATTERNS WITH REGULAR EXPRESSIONS**, replace all lines starting with ‘foo’ with a new line ‘Vim rocks!’:
+- Neovim:
+These regular expressions are specific to Vim/Neovim and may not work exactly the same way in other regular expression engines or text editors. Vim has its own regex dialect with some unique features and conventions.
+
+```vim
+:%s/^th.*/Vim rocks!/gc
+```
+
+Note:
+<br />The "^" (**caret**) symbol matches the beginning of a line and ".*" matches any number of any characters.
+<br /> Check out the **References** for more information on regular expressions.
+
+Task: **USING PATTERNS WITH REGULAR EXPRESSIONS**, replace all the 4 spaces with 2 spaces:
+These regular expressions are specific to Vim/Neovim and may not work exactly the same way in other regular expression engines or text editors. Vim has its own regex dialect with some unique features and conventions.
+- Neovim:
+This helps to change indentation.
+
+```vim
+:%s;^\(\s\+\);\=repeat(' ', len(submatch(0))/2);g
+```
+
+Task: **USING PATTERNS**, replace all the Tab with 2 spaces:
+- Neovim:
+This helps to change indentation.
+
+```vim
+:%s/\t/  /g
+```
+
+Task: **USING PATTERNS**, run case sensitive searches ignoring case sesitivity:
+- Neovim:
+To ignore case for the search pattern, use the i flag:
+<br /> Searching for “FOO” will not match “Foo”:
+
+```vim
+:s/One/billion/gi
+:%s/One/billion/gi
+```
+
+Task: **USING PATTERNS**, substitute all occurrences of ‘one’ to ‘billion’ in all lines starting from line 18 to line 26:
+- Neovim:
+
+```vim
+:18,26s/one/billion/g
+```
+
+Task: **USING PATTERNS**, substitute ‘one’ in all lines starting from the current line to the last one:
+<br>The dot **.** character indicates the current line and **$** - the dollar sign the last line.
+- Neovim:
+
+```vim
+:.,$s/one/billion/
+.,$s/one/billion/g
+```
+
+Task: **USING PATTERNS**, substitute each ‘one’ with ‘billion’ starting from the current line and the four next lines:
+- Neovim:
+
+```vim
+:.,+4s/one/billion/
+:.,+4s/one/billion/g
+```
+
+Note:
+<br />The line specifier can also be set using the ‘+’ or ‘-’ symbol,followed by a number that is added or subtracted from the preceding line number. If the number after the symbol is omitted, it defaults to 1.
+
+Task: **SEARCHING FOR A WHOLE WORD, ONLY**, instead of **USING PATTERNS (which includes subtrings inside words)**:
+- Neovim:
+<br />Type **\<** to mark the beginning of a (whole) word, enter the search pattern, type **\>** to mark the end of a word.
+
+```vim
+:s/\<ten\>/billion/
+:%s/\<ten\>/billion/gc
+```
+
+More Neovim Examples:
+<br /> Comment lines (add # before the line) from 5 to 20:
+
+```vim
+:5,20s/^/#/
+```
+
+Uncomment lines from 5 to 20, revert the previous changes:
+
+```vim
+:5,20s/^#//
+```
+
+Replace all instances of ‘apple’, ‘orange’, and ‘mango’ with ‘fruit’:
+
+```vim
+:%s/apple\|orange\|mango/fruit/g
+```
+
+Remove trailing whitespace at the end of each line:
+
+```vim
+:%s/\s\+$//e
+```
+
+References:
+<br />Topic: Find and Replace in Vim / Vi.
+<br />Web: <https://linuxize.com/post/vim-find-replace/>
+<br />Topic: Regular Expressions in Grep (Regex).
+<br />Web: https://linuxize.com/post/regular-expressions-in-grep/
+<br />Topic: Search and Replace in Multiple Files in Vim/Neovim.
+<br />Web: https://jdhao.github.io/2020/03/14/nvim_search_replace_multiple_file/#:~:text=In%20Sublime%2DText%20and%20other,with%20the%20built%2Din%20features
+<br />Topic: RegExr is an online tool to learn, build, & test Regular Expressions (RegEx / RegExp).
+<br />Web: <https://regexr.com/>
+<br />Topic: Escaping a forward slash in a regular expression.
+<br />Web: https://stackoverflow.com/questions/6076229/escaping-a-forward-slash-in-a-regular-expressions
+
+Note: Some tasks mentioned are already logged in this current file or can be completed by putting in to practice alternative methods or plugins. For example, searches and replacements can be done with **FzF** (Fuzzy Search plugin.)
+
+Task: Setup abbreviations:
+- Neovim: 
+Setup an abbreviation:
+
+```vim
+:ab fsf Free Software Foundation
+```
+
+Switch to **INSERT mode**.
+<br />Type in: `The fsf`, then press `SPACE`. The text abbreviation `fsf` will be replaced with `Free Software Foundation`. 
+<br />Type in: `The fsf`, then press `CTRL` + `v` to do not expand the text `Free Software Foundation`, type in `.org` to complete a web URL `fsf.org`.
+- VS Code: Define a snippet using a snippet file:
+
+```json
+"fsf": {
+	"prefix": "fsf",
+	"body": "Free Software Foundation"
+}
+
+```
+
+To use the snippet, press `TAB` afterwards, to expand it.
+<br />To do note expand the snippet, just type 'fsf' as usual, as you configured VS Code to only expand snippets when pressing `TAB`.
+<br />You can also assign snippets to keyboard shortcuts.
+
+Task: Running shell commands from within Neovim:
+- Neovim: 
+Open the sample file: "root-file.txt". It has root ownership and group.
+This command will save changes made in a still open read only file in a new file called "sudo tee root-file.txt" in teh same directory, so to keep a copy of the changes made during the read only session.
+
+```vim
+:w !sudo tee %
+```
+
+The command `!` preceeds any terminal command typed after it. I.e.:
+
+```vim
+:!ls -la
+```
+
+- VS Code:
+When saving a file when it is open in read mode, a dialog asks you to select the button `Retry as Sudo...`, but it does not work, unfortunately.
+Open the VS Code builtin terminal with `CTRL` + `BACKTICK-SIGN`.
+
 ##### Find text (NORMAL mode)
 
 Press `/`, and then type in the **text to search**.
@@ -3628,6 +4122,31 @@ Press `/`, and then type in the **text to search**.
 To search backwards in Vim use:
 <br />Press `/`, and then type in `?**text to search**` (the text beginning with "?").
 <br />Press `ENTER`.
+
+##### Look for occurrences in the current file (NORMAL mode)
+
+For example, look for the word **const** in the file index.js:
+
+```vim
+:g?const
+
+```
+
+This will **highlight all the occurrences containing the string 'const'**.
+<br />Press `ENTER`.
+<br />When the message "Press ENTER or type command to continue" appears, **look for again using the list of results to fine your searching**:
+
+```vim
+:g?const sum
+
+```
+
+Press `Enter` to go to the particular occurrence that you were looking for.
+<br />Occurrences can be anything but text. You can use **this method** or, for example, **easymotion**, or **pressing `/`** to **find out references to external files** and **enter the referenced file using the built-in Neovim shortcuts**.
+
+Another shortcut to **hightlight all the matching occurrences** or **look for nearest one**, is:
+<br />With the **cursor on the occurrence to look for ...***
+<br />Press `SHIFT` + `*`.
 
 ##### Move forwards through Find text results (NORMAL mode)
 
@@ -3641,7 +4160,7 @@ To search backwards in Vim use:
 <br />After finding the text.
 <br /><br />Press `N` (`SHIFT` + `N`) to position the cursor on the next matching text.
 
-##### Go to the other pair bracket fom the current bracket (NORMAL mode)
+##### Go to the other pair bracket from the current bracket (NORMAL mode)
 
 Go to a particular opening or closing bracket, curly brace or parenthesis pair.
 <br />Press `%` (`SHIFT` + `5`.)
@@ -3763,7 +4282,7 @@ Press `0` to go to beginning of the line.
 
 ```
 
-##### Replace all the ocurrence of a text in-line with (NORMAL mode)
+##### Replace all the occurrence of a text in-line with (NORMAL mode)
 
 Press `0` to go to beginning of the line.
 <br />Do not use 'dd' to delete.
@@ -3790,7 +4309,7 @@ Press `0` to go to beginning of the line.
 
 ```
 
-##### Replace a string across a file asking for every individual ocurrence confirmation (NORMAL mode)
+##### Replace a string across a file asking for every individual occurrence confirmation (NORMAL mode)
 
 Press `0` to go to beginning of the line.
 <br />Do not use 'dd' to delete.
@@ -3854,7 +4373,7 @@ To copy the text highlighted:
 To paste the text highlighted:
 <br />Press `p`.
 
-Note: In any case it returs to **NORMAL** mode when the chosen action finishes.
+Note: In any case it returns to **NORMAL** mode when the chosen action finishes.
 
 ##### Tag Completion
 
@@ -3899,6 +4418,17 @@ Another method consists of sending an empty string to the file:
 ```shell
 $ echo "" > path/to/file
 ```
+##### Save new/untitled file or Save As file from Neovim:
+
+<br />Switch to **COMMAND mode** with `SHIFT` + `:`.
+
+```vim
+: sav new_file_name
+: saveas file_copy_name
+```
+
+References:
+<br />Web: <https://neovim.io/doc/user/editing.html>
 
 #### Setting up Vim or Neovim
 
@@ -5298,7 +5828,7 @@ Get from target branch:
 |  target     |  working    |  merge      |
 |  branch     |  copy       |  branch     |
 |             |             |             |
-|          ------>          |             |
+|          ------v          |             |
 |             |             |             |
 |             |             |             |
 |-----------------------------------------|
@@ -5311,7 +5841,7 @@ Get from merge branch:
 |  target     |  working    |  merge      |
 |  branch     |  copy       |  branch     |
 |             |             |             |
-|             |         <------           |
+|             |         v------           |
 |             |             |             |
 |             |             |             |
 |-----------------------------------------|
@@ -5324,7 +5854,7 @@ Put to working copy (from target branch):
 |  target     |  working    |  merge      |
 |  branch     |  copy       |  branch     |
 |             |             |             |
-|          ------>          |             |
+|          ------v          |             |
 |             |             |             |
 |             |             |             |
 |-----------------------------------------|
@@ -5337,7 +5867,7 @@ Put to working copy (from merge branch):
 |  target     |  working    |  merge      |
 |  branch     |  copy       |  branch     |
 |             |             |             |
-|             |         <------           |
+|             |         v------           |
 |             |             |             |
 |             |             |             |
 |-----------------------------------------|
@@ -5508,8 +6038,8 @@ If you  want to write the merge brach to the working copy and the target branch,
 |  target     |  working    |  merge      |
 |  branch     |  copy       |  branch     |
 |             |             |             |
-|             |         <------           |
-|          <-------------------           |
+|             |         v------           |
+|          v-------------------           |
 |             |             |             |
 |-----------------------------------------|
 |             |             |             |
@@ -5757,31 +6287,6 @@ Things you can do with **fzf** and Vim.
 Web: <https://github.com/junegunn/fzf.vim>
 
 TODO:
-
-##### Look for ocurrences in the current file (NORMAL mode)
-
-For example, look for the word **const** in the file index.js:
-
-```vim
-:g?const
-
-```
-
-This will **highlight all the ocurrences containing the string 'const'**.
-<br />Press `ENTER`.
-<br />When the message "Press ENTER or type command to continue" appears, **look for again using the list of results to fine your searching**:
-
-```vim
-:g?const sum
-
-```
-
-Press `Enter` to go to the particular ocurrence that you were looking for.
-<br />Occurences can be anything but text. You can use **this method** or, for example, **easymotion**, or **pressing `/`** to **find out references to external files** and **enter the referenced file using the built-in Neovim shortcuts**.
-
-Another shortcut to **hightlight all the matching ocurrences** or **look for nearest one**, is:
-<br />With the **cursor on the ocurrence to look for ...***
-<br />Press `SHIFT` + `*`.
 
 ##### Install vim-plug plugins: Copilot.vim
 
@@ -6302,6 +6807,8 @@ silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
 ```
 
 <br />Note: That line is not required since you will use this plugin with the default configuration for the plugin surround.vim, which is not installed yet.
+
+Note: The `.` command (repeat) will work with `ds`, `cs`, and `yss` if you install the plugin **repeat.vim**. And there is no need to add any section options for **repeat.vim** in the file **.vimrc**.
 
 ##### Install vim-plug plugins: vim-signify
 
@@ -7589,7 +8096,7 @@ Ligatures, Color Emoji and font fallback, with true color and dynamic color sche
 - SGR style mouse reporting (works in vim and tmux).
 - Render underline, double-underline, italic, bold, strikethrough (most other terminal emulators do not support as **many render attributes**).
 - Configuration via a **configuration file** with hot reloading.
-- **Multiple Windows** (Hotkey: `Super-N`).  <== Note: This key shorcut is assigned to notifications in Cinnamon.
+- **Multiple Windows** (Hotkey: `Super-N`).  -- Note: This key shortcut is assigned to notifications in Cinnamon.
 - Splits/Panes (**Split horizontally/vertically**: `Ctrl-Shift-Alt-%` and `Ctrl-Shift-Alt-"`, **move between panes**: `Ctrl-ArrowKey`).
 - **Tabs** (Hotkey: `Super-T`, **next/prev**: `Super-Shift-[` and `Super-Shift-]`, **go-to**: `Super-[1-9]`).
 
@@ -8201,492 +8708,6 @@ Usage:
 ```
 
 Note: The `.` command (repeat) will work with `ds`, `cs`, and `yss` if you install the plugin **repeat.vim**. And there is no need to add any section options for **repeat.vim** in the file **.vimrc**.
-
-##### Move cursor to end or the beginning of file in Neovim (NORMAL mode)
-
-Press `SHIFT` + `G` to move cursor to the last line of the file.
-<br />Press `ESC` + `CTRL` + `END` to jump to the end of file to the last character of the line.
-<br />Hit `ESC` + `CTRL` + `HOME` to jump to the start of file to the last character of the line.
-<br />Press `ESC` + `gg` to go to top the file. It remembers previous cursor positions if moved out of that first line using `ARROWS`.
-<br />Press `ESC` + `G` to go to bottom of the file. It remembers previous cursor positions (`h`, `j`, `k`, `l`).
-<br />Press `ESC` + `G` + `A` to go to bottom of the file and in append text mode. In other words, jump to last line and start writing code/text.
-
-
-##### Neovim tasks compared to VS Code tasks
-
-References:
-<br />How does Vim compare to a modern text editor such as VS Code? (Response to DistroTube’s Vim video):
-<br />Video: <https://m.youtube.com/watch?v=8EKK7b5h7XE>
-
-Task: Moving lines around:
-- Neovim: In **NORMAL mode**, press `dd` to delete current line , and `p` to pu the text after cursor.
-- VS Code: `CTRL` + `x` to cut the text, and `CTRL` + `v` to paste the text above the cursos.
-
-Task: Swap the current line with the next line:
-- Neovim: Press `ddp`.
-- VS Code: To move the line up, press `ALT` + `UpArrow`, and to move the line dowm, press `ALT` + `DownArrow`. You can select multiple lines and move them around.
-
-Task: Move a word to another place, for example move the word Hello to the end of the file.
-- Neovim: The 12 Steps:
-<br />1 In **NORMAL mode** Press `/` to search the word (or use an alternative such as easy motion.)
-<br />2 Type in the word to search for.
-<br />3 Press `Enter` to select the word.
-<br />4 Press `viw` to copy the word.
-<br />5 Press `y` to copy the word.
-<br />6 Press `G` to go to the bottom of the file.
-<br />7 Press `I` to go to the beginning of the line in INSERT mode. Or, press `0` and then press `i`.
-<br />8 Press `SPACE BAR` to be able to paste the text at the beginning of the line.
-<br />9 Press `ESC` + `ESC` to go to **NORMAL mode**.
-<br />10 Press `p` to paste the word copied.
-<br />11 Press `I` to go to the beginning of the line in INSERT mode.
-<br />12 Press `BACKSPACE` to remove the blank space at the beginning of the line.
-- VS Code: Copy or cut the selected text. Go to the end of the file. Paste the text copied. Swap the lines as needed.
-
-Task: Similarly to the previous task, but copy the complete line and put it somewhere else, for example, at a new line at the end of the file.
-<br />Neovim: Steps:
-<br /> The step 4 is: press `V` to enter the **VISUAL mode**.
-<br /> The step 5 is: press `y` to copy the complete line.
-<br /> The step 7 (and the final ste, btw) is: press `p` to paste the line copied one line below from cursor position.
-<br />VS Code: Do it manually, by using copy/cut and then paste, or swapping down many times your selected line.
-
-Task: Go to the last cursor position:
-- Neovim: Options:
-<br/> `'.`: Jump to last modification line.
-<br/>``.`: Jump to exact spot in last modification line.
-<br/>`CTRL-O`: Retrace your movements in file in backwards. Test logging movements with text searches `/` several times.
-<br/>`CTRL-I`: Retrace your movements in file in forwards. Test logging movements with text searches `/` several times.
-<br/ >Note: Jumps are remembered in a jump list. With the CTRL-O and CTRL-I command you can go to cursor positions before older jumps, and back again. Thus you can move up and down the list. There is a separate jump list for each window. The maximum number of entries is fixed at 100.
-- VS Code: Go back with `ALT` + `LEFT ARROW`, and go forward with `ALT` + `RIGHT ARROW`. You can go to the definition of a word or function, by using: `CTRL` + `SHIFT` + `O`.
-
-Note: It works along multiple files which could come in handy if want to switch among multiple files a lot.
-
-Task: Indenting multiple lines:
-- Neovim: Steps:
-<br />Switch to **COMMAND mode** with `SHIFT` + `:`.
-<br />Type in the range of lines to indent, from the first to the end, for example to indent the lines from 19 27 of the file **quoted strings.txt** do:
-
-```vim
-:19,27>
-```
-
-Then press `ENTER`.
-- VS Code: Select the text to indent with the `mouse`, then press `TAB`.
-
-Task: Remove the opening quotes from a list of quoted strings: 
-<br />Example: File: **quoted strings.txt**
-
-```code
-"one"
-"two"
-"three"
-"four"
-"five"
-"six"
-"seven"
-"eight"
-"nine"
-"ten"
-"eleven"
-"twelve"
-"thirteen"
-"fourteen"
-"fifteen"
-"sixteen"
-"seventeen"
-"eighteen"
-"nineteen"
-"twenty"
-"twenty one"
-"twenty two"
-"twenty three"
-"twenty four"
-"twenty five"
-"twenty six"
-"twenty seven"
-"twenty eight"
-"twenty nine"
-"thirty"
-"thirty one"
-
-```
-
-- Neovim: Steps:
-<br />Go to the start line/point.
-<br />Press `0` to go to the first character of the line, for example, an opening double quote `"`.
-<br />Press `CTRL` + `v` to enter the **VISUAL BLOCK mode**.
-<br />Use directions `h`, `j`, `k`, `l`, to select other opening quotes of some lines down. For example, use `j` or `5j` to select 5 lines down.
-<br />Type `d` to delete the selected opening quotes from the lines. All the opening quotes are gone.
-
-Task: Remove the closing quotes from a list of quoted strings (**with macros**): 
-- Neovim: Steps:
-<br />Go one line before the start line/point, for example to the line 9, containing a string "nine".
-<br />Record a macro:
-<br />Press `q`.
-<br />Press `2` to record a register "2".
-<br />The message "recording @2" appears in the **modes bar**. So everything I do from now on is a recorded macro.
-<br />Press `j` to go down one line (to the 10th line).
-<br />Press `$` to go to the end of the line to the last character, for example, a closing double quote `"`.
-<br />Press `x` to delete the closing double quote of your first line where you want to remove.
-<br />Press `q` to stop recording the macro.
-<br />Run the macro:
-<br />You need to know exactly how many times run it, from line to line. Use the line numbers as reference. So, for example if you started recording in the line 9, the macro recording used the line 10th, so you wanted to delete the closing quotes from the line 11 to the line 20 (10 times):
-Type in `10@2`.
-<br />Note: If you want to manually/line-by-line delete both double quotes at the beginning and the end of every string, you can use a combination of the commands `ds"` (plugin surround.vim) and the repeat command `.` (activated for **surround.vim** thanks to the plugin **repeat.vim**.)
-- VS Code:
-<br />Go to the first line of the code to modify. You can use `HOME` key.
-<br />Select the block of code with double quotes to be removed, by using the "Column Selection Mode" `CTRL` + `SHIFT` + `DOWN ARROW`.
-<br />Press `DELETE` key to remove the first double quotes of all the lines.
-<br />Press `END` key to go the end of every line of the block of code selected.
-<br />Press `DELETE` key or `BACKSPACE` key to delete the last character of every line of the selected block of code, which are the closing double quotes.
-<br />Press `ESC` to exit the multiline selection status.
-
-Task: Add quotes to a list of strings without quotes:
-
-Example file: **strings no quotes.txt**:
-
-```vim
-one
-two
-three
-four
-five
-six
-seven
-eight
-nine
-ten
-eleven
-twelve
-thirteen
-fourteen
-fifteen
-sixteen
-seventeen
-eighteen
-nineteen
-twenty
-twenty one
-twenty two
-twenty three
-twenty four
-twenty five
-twenty six
-twenty seven
-twenty eight
-twenty nine
-thirty
-thirty one
-
-```
-
-- Neovim: Steps:
-<br />Steps to remove the first character of every selected column (opening double quote):
-<br />From the file **strings no quotes.txt**.
-<br />Press `gg` to go to the first line of the file.
-<br />Press `$` to go to the first character of the file.
-<br />Press `CTRL` + `v` to go into **VISUAL BLOCK mode (V-MODE)**.
-<br />Press `30j` to select all the first characters of the strings from the line 1 (current line) to 30 (30 times, use the line numbers as your reference.)
-<br />Type in `no` to acess the **NORMAL mode** from the **VISUAL BLOCK mode**.
-<br />Press `SHIFT` + `I` to access the **INSERT mode**. The insert cursos appears before the currently selected character (the first character of the line) in the first line of the selected block.
-<br />Press `"` as the character to be inserted. Atually it could be any character.
-<br />Press `ESC` `ESC` to apply the insertion in all the selected block lines.
-<br />Alternatively, you can repeat the action, by pressing `.`.
-<br />Press `SHIFT` + `:` and then `ESC` to go back to **NORMAL mode**.
-<br />This procedure cannot done with the plugin **surround.vim (vim-surround)** key shorcuts due to it works on single lines with html like marks.
-<br />Steps to remove the last character of every selected "column" (closing double quotes) using macros:
-<br />Press `gg` to go tot the first line of the file.
-<br />Press `q2` to start recording the macro in the register '2'.
-<br />Press `j` to go down one line.
-<br />Press `SHIFT` + `A` to change to append text at the end of the line in **INSERT mode**.
-<br />Press `"` to add the new symbol at the end of the line (closing double quote.)
-<br />Press `ESC` to go back to the **NORMAL mode**.
-<br />Press `q` to stop recording the macro.
-<br />Type in the times to run the registered macro from that position:
-<br/> `29@2`.
-- VS Code:
-<br />Select the block of code (the lines required), by using the "Column Selection Mode" `CTRL` + `SHIFT` + `DOWN ARROW`.
-<br />Press `SHIFT` + `END` to make the selection cover each line fully.
-<br />Press `"` to add double quotes to every string in every line of the text selected.
-
-Task: Change the next search of a word:
-- Neovim" Steps:
-<br />Using the file **strings no quotes.txt**.
-<br />Press `/` to start a search.
-<br />Type in `one` to search the word "one".
-<br />Press `ENTER`. It makes you come back to **NORMAL mode** and selects the next search match, equals `twenty one`.
-<br />Type in `cgn` to remove the searched selection.
-<br />Type in the **searched selection replacement**.
-<br />I can do search multiple times to replace every instance one at a time. A simple way to do the job is by the repeat key `.` in **NORMAL mode** It also starts from the beginning of the document when you reached the end of it.
-<br />Press `ESC` to enter the **NORMAL mode**.
-- VS Code: Steps:
-<br />Search for the word "one".
-<br />Press `ENTER` to skip the first match.
-<br />Press `ESC` to finish searching.
-<br />Press `CTRL` + `d` several times to select more ocurrences.
-<br />Finally, edit all the matches all simultaneously.
-
-Task: **USING PATTERNS**, search for the first occurrence of the string ‘one’ in the current line and replace it with ‘billion’ if there is a match:
-
-You can use the sample file **repeated words.txt**:
-
-```code
-eleven	one	one	thirteen		thirteen
-twelve	two	two	fourteen		fourteen
-thirteen	three	three	fifteen		fifteen
-fourteen	four	four	sixteen		sixteen
-fifteen	five	five	seventeen		seventeen
-sixteen	six	six	eighteen		eighteen
-two	seven	seven	nineteen		nineteen
-three	eight	eight	three		twenty one
-four	nine	nine	four		twenty one
-five	ten	ten	five		twenty two
-six		six	six		twenty three
-seven		seven	seven		thirteen
-eight		eight	eight		fourteen
-nine		nine	nine		fifteen
-ten		ten	ten		sixteen
-eleven		eleven	eleven		seventeen
-twelve		twelve	twelve		eighteen
-thirteen		thirteen	thirteen		nineteen
-fourteen		fourteen	fourteen		twenty one
-fifteen		fifteen	fifteen		twenty one
-sixteen		sixteen	sixteen		twenty two
-seventeen		seventeen	seventeen		twenty three
-eighteen		eighteen	eighteen		thirteen
-nineteen		nineteen	nineteen		fourteen
-twenty one		twenty one	twenty one		fifteen
-twenty one		twenty one	twenty one		sixteen
-twenty two		twenty two	twenty two		seventeen
-twenty three		twenty three	twenty three		eighteen
-twenty four		twenty four	twenty four		nineteen
-twenty five		twenty five	twenty five		twenty one
-twenty six		twenty six	twenty six		twenty one
-twenty seven		twenty seven	twenty seven		twenty two
-twenty eight		twenty eight	twenty eight		twenty three
-twenty nine		twenty nine	twenty nine		
-thirty one		thirty one	thirty one		
-
-```
-
-- Neovim:
-
-```vim
-:s/one/billion/
-```
-
-Press `ENTER` to apply changes or `ESC` to rever them.
-
-Task: **USING PATTERNS**, Replace all occurrences of the search pattern in the current line.
-- Neovim: 
-Add the **g flag**, like this:
-
-```vim
-:s/one/billion/g
-```
-
-Press `ENTER` to apply changes or `ESC` to rever them.
-
-Task: **USING PATTERNS**, search and replace the pattern in the entire file.
-- Neovim:
-Use the percentage character **%** as a range from the first line to the last line of the file. **Without the flag g** it is going to replace only the first ocurrence of the lines matching the pattern. **With the flag g**, it is going to replace all the matching ocurrences in the entire file. 
-
-```vim
-:%s/one/billion/
-:%s/one/billion/g
-```
-
-Task: **USING PATTERNS**, delete all instances of the string ‘one’ in the current line.
-- Neovim:
-Use the {pattern} part, but avoid using the {string} part:
-
-```vim
-:s/one//g
-```
-
-Note:
-<br />Instead of the slash character (/), you can **use any other non-alphanumeric single-byte character except as a delimiter**. This option is useful **when you have the ‘/’ character in the search pattern or the replacement string**.
-
-```vim
-:s|one|billion|
-```
-
-Note:
-<br />To **confirm each substitution**, use the c flag:
-
-```vim
-:s/one/billion/gc
-:%s/one/billion/gc
-```
-
-Task: **USING PATTERNS WITH REGULAR EXPRESSIONS**, replace all lines starting with ‘foo’ with a new line ‘Vim rocks!’:
-- Neovim:
-These regular expressions are specific to Vim/Neovim and may not work exactly the same way in other regular expression engines or text editors. Vim has its own regex dialect with some unique features and conventions.
-
-```vim
-:%s/^th.*/Vim rocks!/gc
-```
-
-Note:
-<br />The "^" (**caret**) symbol matches the beginning of a line and ".*" matches any number of any characters.
-<br /> Check out the **References** for more information on regular expressions.
-
-Task: **USING PATTERNS WITH REGULAR EXPRESSIONS**, replace all the 4 spaces with 2 spaces:
-These regular expressions are specific to Vim/Neovim and may not work exactly the same way in other regular expression engines or text editors. Vim has its own regex dialect with some unique features and conventions.
-- Neovim:
-This helps to change indentation.
-
-```vim
-:%s;^\(\s\+\);\=repeat(' ', len(submatch(0))/2);g
-```
-
-Task: **USING PATTERNS**, replace all the Tab with 2 spaces:
-- Neovim:
-This helps to change indentation.
-
-```vim
-:%s/\t/  /g
-```
-
-Task: **USING PATTERNS**, run case sensitive searches ignoring case sesitivity:
-- Neovim:
-To ignore case for the search pattern, use the i flag:
-<br /> Searching for “FOO” will not match “Foo”:
-
-```vim
-:s/One/billion/gi
-:%s/One/billion/gi
-```
-
-Task: **USING PATTERNS**, substitute all occurrences of ‘one’ to ‘billion’ in all lines starting from line 18 to line 26:
-- Neovim:
-
-```vim
-:18,26s/one/billion/g
-```
-
-Task: **USING PATTERNS**, substitute ‘one’ in all lines starting from the current line to the last one:
-<br>The dot **.** character indicates the current line and **$** - the dollar sign the last line.
-- Neovim:
-
-```vim
-:.,$s/one/billion/
-.,$s/one/billion/g
-```
-
-Task: **USING PATTERNS**, substitute each ‘one’ with ‘billion’ starting from the current line and the four next lines:
-- Neovim:
-
-```vim
-:.,+4s/one/billion/
-:.,+4s/one/billion/g
-```
-
-Note:
-<br />The line specifier can also be set using the ‘+’ or ‘-’ symbol,followed by a number that is added or subtracted from the preceding line number. If the number after the symbol is omitted, it defaults to 1.
-
-Task: **SEARCHING FOR A WHOLE WORD, ONLY**, instead of **USING PATTERNS (which includes subtrings inside words)**:
-- Neovim:
-<br />Type **\<** to mark the beginning of a (whole) word, enter the search pattern, type **\>** to mark the end of a word.
-
-```vim
-:s/\<ten\>/billion/
-:%s/\<ten\>/billion/gc
-```
-
-More Neovim Examples:
-<br /> Comment lines (add # before the line) from 5 to 20:
-
-```vim
-:5,20s/^/#/
-```
-
-Uncomment lines from 5 to 20, revert the previous changes:
-
-```vim
-:5,20s/^#//
-```
-
-Replace all instances of ‘apple’, ‘orange’, and ‘mango’ with ‘fruit’:
-
-```vim
-:%s/apple\|orange\|mango/fruit/g
-```
-
-Remove trailing whitespace at the end of each line:
-
-```vim
-:%s/\s\+$//e
-```
-
-References:
-<br />Topic: Find and Replace in Vim / Vi.
-<br />Web: <https://linuxize.com/post/vim-find-replace/>
-<br />Topic: Regular Expressions in Grep (Regex).
-<br />Web: https://linuxize.com/post/regular-expressions-in-grep/
-<br />Topic: Search and Replace in Multiple Files in Vim/Neovim.
-<br />Web: https://jdhao.github.io/2020/03/14/nvim_search_replace_multiple_file/#:~:text=In%20Sublime%2DText%20and%20other,with%20the%20built%2Din%20features
-<br />Topic: RegExr is an online tool to learn, build, & test Regular Expressions (RegEx / RegExp).
-<br />Web: <https://regexr.com/>
-<br />Topic: Escaping a forward slash in a regular expression.
-<br />Web: https://stackoverflow.com/questions/6076229/escaping-a-forward-slash-in-a-regular-expressions
-
-Note: Some tasks mentioned are already logged in this current file or can be completed by putting in to practice alternative methods or plugins. For example, searches and replacements can be done with **FzF** (Fuzzy Search plugin.)
-
-Task: Setup abbreviations:
-- Neovim: 
-Setup an abreviation:
-
-```vim
-:ab fsf Free Software Foundation
-```
-
-Switch to **INSERT mode**.
-<br />Type in: `The fsf`, then press `SPACE`. The text abbreviation `fsf` will be replaced with `Free Software Foundation`. 
-<br />Type in: `The fsf`, then press `CTRL` + `v` to do not expand the text `Free Software Foundation`, type in `.org` to complete a web URL `fsf.org`.
-- VS Code: Define a snippet using a snippet file:
-
-```json
-"fsf": {
-	"prefix": "fsf",
-	"body": "Free Software Foundation"
-}
-
-```
-
-To use the snippet, press `TAB` afterwards, to expand it.
-<br />To do note expand the snippet, just type 'fsf' as usual, as you configured VS Code to only expand snippets when pressing `TAB`.
-<br />You can also assign snippets to keyboard shortcuts.
-
-Task: Running shell commands from within Neovim:
-- Neovim: 
-Open the sample file: "root-file.txt". It has root ownership and group.
-This command will save changes made in a still open read only file in a new file called "sudo tee root-file.txt" in teh same directory, so to keep a copy of the changes made during the read only session.
-
-```vim
-:w !sudo tee %
-```
-
-The command `!` preceeds any terminal command typed after it. I.e.:
-
-```vim
-:!ls -la
-```
-
-- VS Code:
-When saving a file when it is open in read mode, a dialog asks you to select the button `Retry as Sudo...`, but it does not work, unfortunately.
-Open the VS Code builtin terminal with `CTRL` + ` "`" `.
-
-##### Save new/untitled file or Save As file from Neovim:
-
-<br />Switch to **COMMAND mode** with `SHIFT` + `:`.
-
-```vim
-: sav new_file_name
-: saveas file_copy_name
-```
-
-References:
-<br />Web: <https://neovim.io/doc/user/editing.html>
 
 ##### Install vim-plug plugins: codeium.vim
 
@@ -9307,7 +9328,7 @@ pkill tmux
 
 File: index.js
 
-```js
+```javascript
 var msg = 'Hello, world!'
 
 var obj = {
@@ -9910,7 +9931,7 @@ This way python from your currently activated environment will be used.
 
 4. Deactivate.
 
-##### coc-snippets or UltiSnips?
+##### coc-snippets or UltiSnips
 
 The choice between coc-snippets and UltiSnips (presumably "utilsnip" is a typo) depends on your specific needs and preferences. Both are popular plugins for handling snippets in Neovim, but they have some differences in terms of features and configuration.
 
@@ -10910,11 +10931,11 @@ Installation with **Packer** plugin manager in the file **/home/esteban/config/.
 use "rafamadriz/friendly-snippets"
 ```
 
-Check out the documention on GitHub for installations with **vim-plug** or **coc.nvim**.
+Check out the documentation on GitHub for installations with **vim-plug** or **coc.nvim**.
 
 Usage:
 
-This collection of snippets should work with any snippet engine that supports loading vscode snippets. Like for example:
+This collection of snippets should work with any snippet engine that supports loading VSCode snippets. Like for example:
 - vim-vsnip
 - LuaSnip
 - coc-snippets
@@ -11907,7 +11928,19 @@ To load the complete sessions list using **Telescope** you need to install **tel
 
 If you wan t to delete all the sessions file:
 
-File path: ~/.local/share/nvim/sessions
+File path: **~/.local/share/nvim/sessions**.
+
+Does a nvim session store change history?
+
+Neovim's built-in session management feature primarily focuses on saving and restoring the state of your editing environment, including the layout of your windows, opened files, and various settings. However, it does not inherently store the change history or undo/redo information.
+
+The change history (undo tree) is a separate aspect of editing sessions in Neovim. Neovim keeps an undo tree that tracks changes made to the text, allowing you to undo or redo these changes. This information is not directly stored in a session file but in the undo directory (by default, this is the ~/.vimundo/ directory).
+
+If you want to persist the undo information and have it included when restoring a session, you might need to ensure that the undofile option is set. You can do this by adding the following line to your Neovim configuration:
+
+```vim
+set undofile
+```
 
 ##### Install Lua plugins: telescope-ui-select.nvim
 
