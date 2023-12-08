@@ -8910,7 +8910,7 @@ year	total_games_sold
 1998	101.52
 2002	58.67
 
-year	total_games_sold
+year	total_games_sold   
 2008	175.07
 1998	101.52
 2002	58.67
@@ -8936,6 +8936,8 @@ Create cursors vertically:
 Go to the character or blank space to use as column cursor.
 
 Press `CTRL` + `N`.
+
+Go to the same position in the next/previous row.
 
 Use `CTRL` + `DOWN/UP` to create the cursors.
 
