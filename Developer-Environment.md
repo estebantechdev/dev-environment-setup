@@ -5106,16 +5106,28 @@ h1  {
 
 ##### Install vim-plug plugins: vim-dispatch
 
-Leverage the power of Vim's compiler plugins without being bound by synchronicity. Kick off builds and test suites using one of several asynchronous adapters (including tmux, screen, iTerm, Windows, and a headless mode), and when the job completes, errors will be loaded and parsed automatically.
+Leverage the power of Vim's **compiler plugins** without being bound by synchronicity. Kick off builds and test suites using one of several asynchronous adapters (including tmux, screen, iTerm, Windows, and a headless mode), and when the job completes, errors will be loaded and parsed automatically.
 
 Web: <https://github.com/tpope/vim-dispatch>
+
+Installation:
+
+Install the plugin in the file ~/config/.vimrc:
+
+```vim
+" ------------------------------------------------------------------------------
+" Plugins / Compilers / vim-dispatch
+" ------------------------------------------------------------------------------
+Plug 'tpope/vim-dispatch'  " Job dispatcher that uses asynchronous adapters
+
+```
 
 ##### Install vim-plug plugins: vim-fugitive
 
 Fugitive is the premier Vim plugin for Git.
 <br />Web: <https://github.com/tpope/vim-fugitive>
 
-Install the plugin:
+Install the plugin in the file ~/config/.vimrc:
 
 ```vim
 " Git
@@ -11769,11 +11781,193 @@ Web: <https://www.youtube.com/watch?v=u_OORAL_xSM>
 
 ##### Install Lua plugins: neovim-session-manager
 
+A Neovim 0.7+ plugin that use built-in :mksession to manage sessions like folders in VSCode. It allows you to save the current folder as a session to open it later. The plugin can also automatically load the last session on startup, save the current one on exit and switch between session folders.
+
+The plugin saves the sessions in the specified folder (see configuration). The session corresponds to the working directory. If a session already exists for the current folder, it will be overwritten.
+
 Web: <https://github.com/Shatur/neovim-session-manager>
+
+Add the next code to the file ~/config/.vim/init.lua:
+
+```lua
+    ----------------------------------------------------------------------------
+    -- Lua Plugins / IDE / neovim-session-manager
+    ----------------------------------------------------------------------------
+    -- Manage sessions like folders in VSCode
+    use {
+        'Shatur/neovim-session-manager',
+        requires = 'nvim-lua/plenary.nvim',
+    }
+```
+
+Add some code to the options section:
+
+```lua
+--------------------------------------------------------------------------------
+-- Lua Plugins options / neovim-session-manager
+--------------------------------------------------------------------------------
+local Path = require('plenary.path')
+local config = require('session_manager.config')
+require('session_manager').setup({
+  sessions_dir = Path:new(vim.fn.stdpath('data'), 'sessions'),  -- The directory where the session files will be saved.
+  session_filename_to_dir = session_filename_to_dir,  -- Function that replaces symbols into separators and colons to transform filename into a session directory.
+  dir_to_session_filename = dir_to_session_filename,  -- Function that replaces separators and colons into special symbols to transform session directory into a filename. Should use `vim.loop.cwd()` if the passed `dir` is `nil`.
+  autoload_mode = config.AutoloadMode.Disabled,       -- Define what to do when Neovim is started without arguments. Possible values: Disabled, CurrentDir, LastSession
+  autosave_last_session = false,                      -- Automatically save last session on exit and on session switch.
+  autosave_ignore_not_normal = true,                  -- Plugin will not save a session when no buffers are opened, or all of them aren't writable or listed.
+  autosave_ignore_dirs = {},                          -- A list of directories where the session will not be autosaved.
+  autosave_ignore_filetypes = {                       -- All buffers of these file types will be closed before the session is saved.
+    'gitcommit',
+    'gitrebase',
+  },
+  autosave_ignore_buftypes = {},     -- All buffers of these bufer types will be closed before the session is saved.
+  autosave_only_in_session = false,  -- Always autosaves session. If true, only autosaves after a session is active.
+  max_path_length = 80,              -- Shorten the display path if length exceeds this threshold. Use 0 if don't want to shorten the path at all.
+})
+
+```
+
+Usage:
+
+Go to the project directory.
+
+Open a file or the files you want to be saved in the session in different tabs/buffers or windows/buffers using NERDTree.
+
+Save the sessions status:
+
+```vim
+:SessionManager save_current_session
+```
+
+If you close Neovim, it will ask you to close every file tab by tab, for you to save or discard new changes. If you are unsure, use:
+
+```vim
+:Gdiff
+```
+
+Then exit the tab:
+
+```vim
+:wq!
+:q!
+```
+
+One way to close it without taking care of what is saved or not is this command:
+
+```vim
+:%bdelete
+```
+
+Restart Neovim and select the sessions you want to go to. It is much better to first, go to the project's root, and be inside of a Tmux sessions, in case you need to use a second Tmux pane for something, for example, to run the project.
+
+```vim
+:nvim
+```
+
+Select your session.
+
+```vim
+:SessionManager load_current_dir_session
+```
+
+You will see all your session tabs in the buffers line.
+
+To see more command options:
+
+```
+:SessionManager (then press TAB)
+:Sess (then press TAB, SPACEBAR, then TAB again)
+```
+
+Press `ENTER` to select any option.
+
+All the command options are:
+
+```vim
+:SessionManager load_sessions
+:SessionManager load_current_dir_session
+:SessionManager delete_session
+:SessionManager save_current_session
+:SessionManager load_last_session
+:SessionManager load_current_dir_session
+:SessionManager delete_session
+:SessionManager save_current_session
+:SessionManager load_last_session
+```
+
+You can save all the current open files at once (being or not a part of a session), which is not recommended, by loading another session (which closes the current session). Neovim will open a dialog and you have to decide if you are going to save everything and close or just close without saving the changes on file(s).
+
+```vim
+:SessionManager load_sessions
+```
+
+To load the complete sessions list using **Telescope** you need to install **telescope-ui-select.nvim**.
+
+If you wan t to delete all the sessions file:
+
+File path: ~/.local/share/nvim/sessions
 
 ##### Install Lua plugins: telescope-ui-select.nvim
 
+
+
 Web: <https://github.com/nvim-telescope/telescope-ui-select.nvim>
+
+Installation:
+
+Add the code to the file: ~/config/,vim/init.lua.
+
+```vim
+    ----------------------------------------------------------------------------
+    -- Lua Plugins / Finder / telescope-ui-select.nvim
+    ----------------------------------------------------------------------------
+    -- It sets vim.ui.select to telescope
+    use {'nvim-telescope/telescope-ui-select.nvim' }
+
+```
+
+Add the next code to the extensions section  of the plugin Telescope options:
+
+```lua
+  extensions = {
+    -- Your extension configuration goes here:
+    -- extension_name = {
+    --   extension_config_key = value,
+    -- }
+    -- please take a look at the readme of the extension you want to configure
+    ["ui-select"] = {
+      require("telescope.themes").get_dropdown {
+        -- even more opts
+      }
+
+      -- pseudo code / specification for writing custom displays, like the one
+      -- for "codeactions"
+      -- specific_opts = {
+      --   [kind] = {
+      --     make_indexed = function(items) -> indexed_items, width,
+      --     make_displayer = function(widths) -> displayer
+      --     make_display = function(displayer) -> function(e)
+      --     make_ordinal = function(e) -> string
+      --   },
+      --   -- for example to disable the custom builtin "codeactions" display
+      --      do the following
+      --   codeactions = false,
+      -- }
+    }
+  },
+
+```
+
+This goes after the closing curly brace of the Telescope setup function:
+
+```lua
+-- To get ui-select loaded and working with telescope, you need to call
+-- load_extension, somewhere after setup function.
+require("telescope").load_extension("ui-select")
+
+```
+
+To use this plugin, check out the plugin **neovim-session-manager**.
 
 ##### Install Lua plugins: llm.nvim
 
