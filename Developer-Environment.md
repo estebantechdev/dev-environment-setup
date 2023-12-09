@@ -4427,12 +4427,34 @@ $ echo "" > path/to/file
 : saveas file_copy_name
 ```
 
+##### File operations:
+
+Check out the section of the plugin  NERDTree.
+
+Once on a file in NERDTree, press `m`, and you will be able to create new directories and new files in the directory, rename files (move files), delete files, open the file directory in the system's file manager, open the file with the system editor, copy the file, copy the path to the file or a system command in the current directory.
+
 References:
+Topic: How to rename a file in Vim?
+<br/ >Web: <https://mokacoding.com/blog/vim-rename-file/>
+
+##### End of line and end of file
+
+You can add the next code to the file `~/config/.vimrc:
+
+```vim
+"setl ff=unix fixeol             " You want files in Unix format (every line NL terminated)
+"setl ff=dos fixeol              " You want to use an old MS-DOS file in a modern environment
+"setl ff=dos nofixeol noeol eof  " You want to drop the final <EOL> and add a final CTRL-Z
+"setl nofixeol                   " You want to preserve the fileformat exactly as-is, including any final <EOL> and final CTRL-Z
+```
+
+References:
+Topic: Editing a file with Vim.
 <br />Web: <https://neovim.io/doc/user/editing.html>
 
-#### Setting up Vim or Neovim
+##### Setting up Vim or Neovim
 
-#### Install terminal enhancers Zplug, fzf, ripgrep, igrep, bat
+##### Install terminal enhancers Zplug, fzf, ripgrep, igrep, bat
 
 These tools improve the usage of the terminal and the most of them can also be used as terminal commands inside Neovim, like:
 
@@ -4991,16 +5013,39 @@ Save and reopen the file and install the plugin.
 
 To open Nerdtree:
 <br />Press`F2` key.
-<br />To exit Nerdtree:
+
+To exit Nerdtree:
 <br />Press `q`.
-<br />To toggle Nerdtree ON/OFF:
+
+To toggle Nerdtree ON/OFF:
 <br />Press `F3` key or press `CTRL` + `n`.
-<br />To navigate the directories:
+
+To navigate the directories:
 <br />Use `ARROWS` or the mouse.
-<br />To open a file:
+
+To open a file:
 <br />Press `Enter` or use `Double Click`, or press `s`. 
 <br />This option `s` opens the file in the Nerdtree terminal, so we have two files open side by side in different terminals. Now, we can't go back to close the first file we open in the first terminal, but this behavior will change by installing the plugin 'vim-tmux-navigator.'
-<br />To get help menu:
+
+Open the file operations on a file:
+<br />Move to a file or click on a file, then  press `m`. You  will see the next options to choose from:
+
+```vim
+NERDTree Menu. Use j/k/enter, or the shortcuts indicated
+> (a)dd a childnode
+(m)ove the current node
+(d)elete the current node
+(r)eveal the current node in file manager
+(0) pen the current node with system editor (c)opy the current node
+copy (p)ath to clipboard
+(l)ist the current node (C) hange node permissions
+Run (s)ystem command in this directory
+
+```
+
+With these options you can create new directories and new files in the directory, rename files (move files), delete files, open the file directory in the system's file manager, open the file with the system editor, copy the file, copy the path to the file or a system command in the current directory.
+
+To get help menu:
 <br />Press `?`.
 
 References:
@@ -6543,7 +6588,7 @@ Babel Syntax Highlighting is supported by this plugin:
 <br />These days, many popular editors support ES2015+ syntax highlighting out of the box, while some require installing additional extensions.
 <br />Install the vim-javascript plugin, which brings both improved syntax highlighting and indentation support for JavaScript to Vim.
 
-For infomation on hwo to install Babel from NPM:
+For information on how to install Babel from NPM:
 Web: <https://babeljs.io/setup#installation>
 Web: <https://babeljs.io/setup#babel_cli>
 
