@@ -251,11 +251,20 @@ HTTP/S protocol
 SSH protocol
 Git Protocol. It uses a daemon (Disk and Execution Monitor).
 
+Show tag list:
+$ git tag
+
 Identify the project advances, by adding a tag in the last commit made:
-$ git tag [v2.0]
+
 
 First ensure that you have checked out the branch you want to tag.
 $ git checkout your_target_branch
+
+Simple version (but use the one with message):
+$ git tag [v2.0]
+
+Or:
+$ git tag [v0.1.0]
 
 Version the code using the git Annotated Tags:
 $ git tag -a v1.0 -m "my version 1.0"
@@ -281,23 +290,15 @@ In Git, you can remove tags using the git tag -d command. Here's the basic synta
 
 $ git tag -d <tag_name>
 
-Replace <tag_name> with the name of the tag you want to delete.
+Replace <tag_name> with the name of the tag you want to delete. For example:
 
-After deleting the tag locally, you might also want to delete it on the remote repository if you've already pushed the tag. To delete a remote tag, you can use the git push command with the --delete option:
+$ git tag -d v0.1.1
 
-git push origin --delete <tag_name>
+After deleting the tag locally, you might also want to delete it on the remote repository if you've already pushed the tag.
 
-Replace <tag_name> with the name of the tag you want to delete on the remote.
+Delete the remote tag (if it exists):
 
-Here's a step-by-step breakdown:
-
-Delete local tag:
-
-git tag -d <tag_name>
-
-Delete remote tag (if needed):
-
-git push origin --delete <tag_name>
+$ git push origin :refs/tags/v0.1.1
 
 Note: Deleting a tag locally and on the remote repository doesn't delete the commits the tag was pointing to; it just removes the reference to the tag. If you've pushed a tag to a remote repository and others have already pulled that tag, you might want to communicate the removal of the tag to them.
 
@@ -313,7 +314,8 @@ $ git clone --bare MyRepo.git
 Show metadata and data changes of a certain commit:
 $ git show [commit]
 
-Reset the head (See Git stages image):
+Reset
+t the head (See Git stages image):
 $ git reset HEAD^ filename
 
 $ git reset --soft HEAD^
