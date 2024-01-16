@@ -256,7 +256,6 @@ $ git tag
 
 Identify the project advances, by adding a tag in the last commit made:
 
-
 First ensure that you have checked out the branch you want to tag.
 $ git checkout your_target_branch
 

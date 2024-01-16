@@ -12,8 +12,8 @@ if [ "$#" -lt "2" ] ; then
 	echo 'or' 
 	echo './countdown.sh -m  90' 
 	exit 1 
-fi 
- 
+fi
+
 now=`date +%s` 
  
 if [ "$1" = "-d" ] ; then 
