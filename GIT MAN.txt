@@ -13,6 +13,7 @@ Git, fixing common mistakes and undoing bad commits
 Git commands for files and directories
 Create and set up a new repository on github.com
 Create new SSH keys for GitHub repo access from another computer or OS
+Verified vs unverified commits (GPG key)
 
 Create and set up a new repository on gitlab.com
 
@@ -314,7 +315,7 @@ Show metadata and data changes of a certain commit:
 $ git show [commit]
 
 Reset
-t the head (See Git stages image):
+Reset the head (See Git stages image):
 $ git reset HEAD^ filename
 
 $ git reset --soft HEAD^
@@ -334,6 +335,9 @@ $ git config --global user.email "you@example.com"
 $ git config --global user.name "Your Name"
 
 *Omit --global to set the identity only in this repository.
+
+These configuration commands can be used to change auto setup values on a fresh sytem and/or git installation. After a the first commit, a messages will tell you that the email and address were configured automatically. After doing this, you may fix the identity used for this commit with:
+$ git commit --amend --reset-author
 
 Replace username:
 $ git config --global --replace-all user.name "Esteban Herrera"
@@ -430,7 +434,7 @@ Add files:
 	remember - git status - to check the state of the repo 
 	
 Remove files: 
-	git reset - removes files to be committed (from the staging area)
+	git reset - removes tracked files to be committed (from the staging area)
 	git reset somefile.js - removes somefile.js from the commit preparation
 	
 Committing:
@@ -741,8 +745,10 @@ I want to revert a change in the text editor (E.g.: VS Code), before add it to t
 ($ git status - Returns that I have modified the file.
 $ git diff - Shows changes between the file versions.)
 $ git checkout cal.py - Reverts the file status.
+$ git checkout -- <file_path> - Dircard changes made to the file and revert changes to the last committed state.
 ($ git status
 $ git diff - Verify past status of the file.)
+$ git checkout -- . - Discard changes in all files in the working directory.
 
 - Amend in one line:
 ----------------------:
@@ -903,8 +909,8 @@ Remember to use git ammend only in single person repos. Otherwise, checkout the 
 
 $ git status
 $ git log
-After the git ammend (much better in one line)..., the ammend commit becomes the head.
-The HEAD~1 means the commit before head. Head is the ammend commit that we want to keep. Obviously you can also use HEAD~n to "go back" n commits from your head. Maybe from this point you have interpreted: --hard HEAD also as HEAD~0 => deleting work in progress.
+After the git amend (much better in one line)..., the amend commit becomes the head.
+The HEAD~1 means the commit before head. Head is the amend commit that we want to keep. Obviously you can also use HEAD~n to "go back" n commits from your head. Maybe from this point you have interpreted: --hard HEAD also as HEAD~0 => deleting work in progress.
 $ git reset --hard HEAD~1
 Or, you could look at the output of git log, find the commit id of the commit you want to back up to, and then do this:
 $ git reset --hard <sha1-commit-id>
@@ -1045,6 +1051,16 @@ Remember to use the github account's email as the email parameter.
 $ ssh keygen -C stv.herrera@gmail.com
 
 Copy the passphrase to the clipboard and then go to paste it following the github.com instructions on GitHub.
+
+-------------------------------------------------------->
+Verified vs unverified commits (GPG key)
+-------------------------------------------------------->
+
+Topic: GPG keys.
+https://github.com/settings/keys
+
+Topic: Managing commit signature verification.
+https://docs.github.com/en/authentication/managing-commit-signature-verification
 
 -------------------------------------------------------->
 Create and set up a new repository on gitlab.com

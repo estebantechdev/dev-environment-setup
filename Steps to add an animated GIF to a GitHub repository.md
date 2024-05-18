@@ -2,13 +2,13 @@
 
 ## Add the tags to the repository
 
-On GitHub add teh tags to tell the potential visitors what the repository is all about.
+On GitHub add the tags to tell the potential visitors what the repository is all about.
 
 ## Record the app or web app in the repos
 
 ### Modify the screen resolution to a 16 x 9 format
 
-For example, in Cinnamon, go to System Settings, go to Dsplay. Change the resolution to 1920 x 1080 (16:9)
+For example, in Cinnamon, go to System Settings, go to Display. Change the resolution to 1920 x 1080 (16:9)
 
 ### For Desktop or Terminal applications record with SimpleSCreenRecoder
 
@@ -52,7 +52,7 @@ Play the at this point to know where to cut it.
 
 ## Make a cut of the video using a duration
 
-To keep th e first 7 seconds of the video (the 7 seconds speeded up.
+To keep the first 7 seconds of the video (the 7 seconds speeded up.
 
 ```shell
 ffmpeg -i input.mp4 -t 00:00:07 -c:v copy -c:a copy output2.mp4
@@ -71,7 +71,7 @@ Covert the video here:
 
 Download the converted file.
 
-To review the GIF file animation quality, RIGHT CLICK on it, and then select Image Viewer.
+To review the GIF file animation quality, RIGHT CLICK on it, and then select Image Viewer or Gwenview.
 
 ## Add the file to the repository
 
@@ -81,7 +81,7 @@ Add the file to the directory screeenshots/
 
 ## Add the file to the README file
 
-To know the dimensions of teh gif file:
+To know the dimensions of the gif file:
 
 RIGHT CLICK on the gif file, select Properties, go to Image.
 
@@ -96,7 +96,7 @@ Example of README.md file.
 
 Old school front end web exercises
 
-<img alt="Fromt End" src="./screenshots/old-school-front-end-web-exercises.gif?raw=true" width="690" height="388" />
+<img alt="Front End" src="./screenshots/old-school-front-end-web-exercises.gif?raw=true" width="690" height="388" />
 ```
 
 ## Push changes using git
