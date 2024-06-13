@@ -1,0 +1,41 @@
+Merge branch 'main' of github.com:estebanways/commbase
+Add script description
+Add file descriptor
+Add new files libcommbase/interactive/terminal_set_pytts3_voice_index.sh, libcommbase/routines/display_any_pytts3_voice_index_details.py, and libcommbase/routines/display_total_number_of_pytts3_voice_indexes.py to implement new command option --set-pyttsx3-voice-index and be able to: set pyttsx3 TTS engine voice index, show current voice index, and display any pytts3 voice index details
+Give the file execution permissions
+Manage to automatically start recording when the recorder device is available after pressing the recording char key just one time
+Calculate and display the processing time in the reactive stt engine
+Change the STT_ENGINE_PROCESSING_TIME_VISIBLE_ON variable value to True to be able to calculate and display the processing time in the reactive stt engine
+Create optional serial hardware interaction with the reactive stt engine
+Add serial hardware related proactive stt engine file paths and functions to reactive stt engine
+Enable COMMBASE_HARDWARE_NOTIFICATIONS_ON to create serial hardware interaction with the reactive stt engine
+Add a new option --show-full-commbase-log to display the full Commbase log in the apps pane
+Add new file bundles/libcommbase/libcommbase/routines/assistant_discourse_with_external_capture_driving.sh
+Read the CHAT_LOG_FILE configuration variable without slash by adding the slash directly in the code
+Add the new terminal command --show-log-chat-log to display the log data/.chat_log.txt in the apps pane
+Remove the first slash from the variable CHAT_LOG_FILE to read the CHAT_LOG_FILE configuration variable without a slash
+Refactor the function toggle_capture_on-off.sh by writing logs to using the routines assistant_discourse and assistant_discourse_with_external_capture_driving instead of inner code
+Read the CHAT_LOG_FILE configuration variable without slash by adding the slash to the variable file_path
+Add the new discourses with keys default_microphone_is_mute_now and issue_with_the_microphone to the libcommbase translation files for toggle_capture_on-off.sh to used them
+Read the CHAT_LOG_FILE configuration variable without slash by adding the slash to the cp command
+Modify the assistant_discourse call and assistant_discourse.sh with the arguments: pane, i18n, origin, log_severity_level_1, and discourse_key to be able to standardize the log files content
+Read the CHAT_LOG_FILE configuration variable without slash by adding the slash to the function get_chat_log_file()
+Insert an empty line
+Read the CHAT_LOG_FILE configuration variable without slash by adding the slash to the function get_chat_log_file()
+Insert an empty line
+Modify the calls to the new version of the routine assistant_discourse.sh to comply with the standardization on how the chat participant's discourses are logged to the file data/.chat_log.txt
+Standardize how the chat participant's discourses are logged to the file data/.chat_log.txt using the log_severity_level_1. They look like this now: [2024-05-23 14:52:30] app: DEBUG: ✨ ASSISTANT: Mute the microphone to pause recording. [2024-05-23 14:52:47] stt-whisper-proactive: DEBUG: 🧑 END USER: Something about myself. The routine tail_chat_log.sh yet tailors the logs to show them in the chatroom
+Add more information about the apps pane to the User s Guide
+Add new routine log_command_with_timestamp.sh to create new command --show-log-commands to show log commands in the apps pane
+Lowercase local log variable
+Lowercase local log variable
+Add the new option commbase --show-chatroom for the apps pane and reorganize the help menu
+Add new file tail_log_file.sh to create new commbase option 'commbase --show-log-messages'
+Reorganize project structure
+Log message with timestamp instead of with elapsed time
+Organize the content by index/key in alphabetical order
+Add i18n_number parameter for internationalization
+Add i18n_number parameter for internationalization
+Create two separate routines based on log_message.sh: bundles/libcommbase/libcommbase/routines/log_message_with_elapsed_time.sh and bundles/libcommbase/libcommbase/routines/log_message_with_timestamp.sh
+Modify the libcommbase routine append_message_to_log_file.sh to log messages either to a specified log file or to the output and rename it as log_message.sh
+Add new libcommbase log_messages directory

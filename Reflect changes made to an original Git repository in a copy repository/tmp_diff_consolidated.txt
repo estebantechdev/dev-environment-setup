@@ -1,0 +1,86 @@
+### Commit Summary: Update Installation Guide and Configuration
+
+**Details:**
+- **Modified Files:** 4
+  - `INSTALL`: Added `bc` to the list of required packages and updated instructions for setting audio capture variables.
+  - `README.md`: Included new directories and updated file organization structure.
+  - `assets/docs/User's Guide.md`: Expanded descriptions and examples for logging and audio capture settings.
+  - `bundles/commbase-recorder-transmitter-b/reccomm.sh`: Introduced new variables for audio device indices and added logic to check if the device is busy before recording.
+
+**Modifications:**
+1. **INSTALL**
+   - Added `bc` to the required packages list.
+   - Updated command to include `bc` for package installation.
+   - Extended instructions for setting audio capture variables, including `CARD_INDEX` and `DEVICE_INDEX`, and added commands to check device status.
+
+2. **README.md**
+   - Added `log_messages` directory under project organization.
+   - Modified the structure of the `scripts` directory to include `reset_commbase.conf`.
+
+3. **assets/docs/User's Guide.md**
+   - Clarified the functionality of Pane 1 in the Commbase application.
+   - Enhanced logging configuration details, including new variables for logging commands and their file paths.
+   - Detailed the assistant logging levels and added examples for `LOG_MESSAGES_FILE`, `LOG_COMMANDS_TO_FILE_ON`, `LOG_COMMANDS_FILE`.
+
+4. **bundles/commbase-recorder-transmitter-b/reccomm.sh**
+   - Added `CARD_INDEX` and `DEVICE_INDEX` variables.
+   - Implemented a check for busy audio devices using `lsof` before starting the recording.
+   - Improved cleanup function to handle the temporary directory more robustly.
+
+**Context:**
+This commit updates documentation and configuration files to improve clarity and usability. The changes in `INSTALL` and `README.md` ensure users have accurate installation instructions and understand the updated project structure. Enhancements in the User's Guide provide better guidance on logging and audio settings. The script modifications introduce robust handling of audio devices, ensuring a smoother user experience during recording operations.
+
+**Conclusion:**
+These changes aim to streamline the setup process, enhance documentation clarity, and improve the functionality of audio recording scripts. By updating installation commands, refining logging configurations, and adding robust device checks, this commit enhances the overall stability and usability of the repository.
+
+
+
+
+Refactor and enhance commbase STT whisper functionality
+
+- Added `datetime` import to include timestamps in logs.
+- Replaced `get_assistant_log_severity_levels_on` and `get_log_severity_level_2` with `get_log_severity_level_1`.
+- Introduced timestamps and standardized log format in `write_to_temp_file`.
+- Modified `get_chat_log_file` to append a slash before the file path value.
+- Removed `get_assistant_log_severity_levels_on` function from `functions.py`.
+- Renamed `get_log_severity_level_2` to `get_log_severity_level_1` and updated its usage.
+- Added functions to notify hardware about processing start and stop in `commbase_stt_whisper_reactive_p.py`.
+- Included `subprocess` import for hardware notifications.
+- Integrated hardware notification functions in the main processing loop.
+- Added processing time visibility feature with elapsed time calculation in `commbase_stt_whisper_reactive_p.py`.
+- Updated binary file `recording.wav`.
+
+These changes improve logging consistency, enhance hardware interaction, and provide better visibility into processing times.
+
+
+
+Added file_paths.py:
+- Fixed the path construction in the get_chat_log_file function to properly append a slash between the directory and file name.
+- Added functions to retrieve the paths for hardware command processing start and stop files, and hardware device 0.
+- These functions parse the configuration file to retrieve the specified paths.
+- Updated functions.py:
+  - Added functions to retrieve the status of hardware notifications and processing start and stop notifications.
+  - These functions read the corresponding variables from the environment configuration file.
+  - Added a function to determine if the processing time should be visible.
+  - This function retrieves the value of the STT_ENGINE_PROCESSING_TIME_VISIBLE_ON variable from the environment configuration file.
+
+
+
+  Summary:
+- Added a timestamp variable to store the current date and time.
+- Modified the logging process to include the timestamp in the log messages.
+- Removed redundant conditional blocks for logging severity levels.
+- Updated the function call to `assistant_discourse` with the appropriate arguments.
+
+
+
+Summary: Added new phrases to English and Spanish language files, updated file paths, and added logging functionality.
+
+Details:
+- Added new phrases for microphone status and issues to English and Spanish language files.
+- Updated file paths for log files and chat log file in the configuration.
+- Enabled logging of commands to a separate log file.
+- Updated the application script to include logging of messages and commands.
+
+
+
