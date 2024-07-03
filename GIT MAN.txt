@@ -905,7 +905,7 @@ So, now whenever you push these changes and somebody else pulls those down their
 - How do I delete previous commits (on git and/or GitHub)
 ------------------------------------------------------------------------------------------------------------------------:
 
-Remember to use git ammend only in single person repos. Otherwise, checkout the ammend info in this document.
+Remember to use git amend only in single person repos. Otherwise, checkout the ammend info in this document.
 
 $ git status
 $ git log
@@ -915,7 +915,11 @@ $ git reset --hard HEAD~1
 Or, you could look at the output of git log, find the commit id of the commit you want to back up to, and then do this:
 $ git reset --hard <sha1-commit-id>
 If you already pushed it (e.g.: on GitHub), you will need to, INSTEAD, do a force push to get rid of it. Checkout changes on GitHub to make sure that the origin and local repo are synced.
+The next correct command depends on your specific situation:
 $ git push origin HEAD --force
+This command pushes the current state of your branch (where HEAD is pointing) to the remote repository's default branch. It's useful if you are on a different branch other than main and want to push the changes to the corresponding remote branch.
+$ git push origin main --force
+This command pushes the main branch to the remote repository, regardless of which branch you are currently on locally. It forces the remote main branch to match your local main branch.
 If you have not yet pushed the commit anywhere, you can use git rebase -i to remove that commit. First, find out how far back that commit is (approximately). Then do:
 git rebase -i HEAD~N
 The ~N means rebase the last N commits (N must be a number, for example HEAD~10). Then, you can edit the file that Git presents to you to delete the offending commit. On saving that file, Git will then rewrite all the following commits as if the one you deleted didn't exist.
