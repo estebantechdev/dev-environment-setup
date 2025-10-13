@@ -46,6 +46,10 @@ Managing code review settings for your team
 The Best Way To Do A Code Review On GitHub
 Choosing a name for a Git branch
 
+Git Large File Storage (LFS) - Replaces large files
+Git LFS servers
+What happens if you track an image using Git LFS but the Git LFS server is down
+
 
 Pending:
 - A list of git tools
@@ -768,7 +772,7 @@ Scenario:
 1. We worked on/created a file, for example, .gitignore. We wanted to commit it, but added it to the staging area and forgot to commit it.
 2. We worked on/created a file and commit it, but committed its message with typos or errors. E.g.: calc.py.
 3. Next, we amend the commit. If we amend opening the editor we will notice the errors:
-$ git --amend
+$ git commit --amend <------- (requires more arguments: -m "Corrected message")
 Notice that the output tells us the files involved in the commit. In this case it's going to commit the file message we are amending, but also the file that we forgot to previously commit. E.g.:
 OUTPUT:
 On branch main <------- (formerly "master")
@@ -1375,10 +1379,459 @@ experiment/estebanways
 Remember to prefix the branch name with either feature/, experiment/, or dev/ to maintain consistency with Git branch naming conventions. Additionally, feel free to customize the branch name further based on your project's naming conventions or personal preferences.
 
 -------------------------------------------------------->
+Paste public github file content on OpenAI's ChatGPT using prompts:
+-------------------------------------------------------->
+
+open https://github.com/estebanways/multiple-dev-container-vscode/blob/master/python-src/hello.py from estebaways
+
+Syntax:
+open github file <web-address> from <public-repo-user>
+
+Certainly! Here's the content of the hello.py file from the GitHub repository you provided:
+python
+print("Hello from Python!")
+This simple script prints the message "Hello from Python!" to the console.
+
+-------------------------------------------------------->
+Git Large File Storage (LFS) - Replaces large files
+-------------------------------------------------------->
+
+Git Large File Storage (LFS) - Replaces large files such as audio samples, videos, datasets, and graphics...
+
+Git Large File Storage (LFS) replaces large files such as audio samples, videos, datasets, and
+graphics with text pointers inside Git, while storing the file contents on a remote server
+like GitHub.com or GitHub Enterprise.
+
+Getting Started
+Download and install the Git command line extension. Once downloaded and installed, set up Git LFS for your user account by running:
+
+git lfs install
+You only need to run this once per user account.
+
+In each Git repository where you want to use Git LFS, select the file types you'd like Git LFS to manage (or directly edit your .gitattributes). You can configure additional file extensions at anytime.
+
+git lfs track "*.psd"
+
+Now make sure .gitattributes is tracked:
+
+git add .gitattributes
+
+Note that defining the file types Git LFS should track will not, by itself, convert any pre-existing files to Git LFS, such as files on other branches or in your prior commit history. To do that, use the git lfs migrate(1) command, which has a range of options designed to suit various potential use cases.
+
+There is no step three. Just commit and push as you normally would; for instance, if your current branch is named main:
+
+git add file.psd
+git commit -m "Add design file"
+git push origin main
+
+Check out their wiki, discussion forum, and documentation for help with any questions you might have!
+
+Information from: https://git-lfs.com/
+
+-------------------------------------------------------->
+Git LFS servers
+-------------------------------------------------------->
+
+Git LFS servers are useful for large files that don’t work well in normal Git repositories, because Git stores all history in the .git folder, which grows quickly with big files. Typical use cases include:
+
+1. Binary Files
+
+Files that can’t be efficiently diffed (Git only stores changes well for text files).
+
+Examples:
+
+.exe, .dll, .bin
+
+.zip, .tar.gz
+
+.iso
+
+.apk or .ipa
+
+2. Media Assets
+
+Large images, videos, or audio files used in projects.
+
+Examples:
+
+.png, .jpg, .tif, .psd (Photoshop)
+
+.mp3, .wav
+
+.mp4, .mov
+
+3. Game Development / Design Files
+
+Big assets for games or 3D projects.
+
+Examples:
+
+.fbx, .obj, .blend (Blender)
+
+.unity, .umap, .uasset (Unreal Engine)
+
+4. Scientific / Data Files
+
+Large datasets or simulation outputs.
+
+Examples:
+
+.csv, .h5, .mat
+
+GIS or satellite imagery files
+
+5. Other Large Project Files
+
+Any file that would bloat your Git repo if stored normally.
+
+Key point: Git LFS doesn’t replace Git for code; it’s only for large files that change infrequently, so your repo stays lightweight.
+
+++ Here’s a practical workflow for deciding which files to put in Git LFS and which to keep in Git:
+
+1. Files to Keep in Normal Git
+
+Text files and code: Git tracks changes efficiently.
+
+.c, .cpp, .py, .js, .html, .css
+
+Configuration & scripts: Usually small, frequently changed.
+
+.json, .yaml, .sh, .env.example
+
+Documentation:
+
+.md, .txt
+
+Rule of thumb: If the file is small (< 5–10 MB) and diffable, keep it in Git.
+
+2. Files to Move to Git LFS
+
+Large binaries: Don’t diff efficiently.
+
+.exe, .dll, .bin
+
+Media & assets:
+
+Images: .png, .jpg, .psd, .tif
+
+Video/audio: .mp4, .mov, .mp3, .wav
+
+3D assets: .fbx, .obj, .blend
+
+Datasets & simulations:
+
+.csv, .h5, .mat, large .json files
+
+Compressed archives:
+
+.zip, .tar.gz, .apk, .ipa
+
+Rule of thumb: If the file is large, rarely changes, or will bloat your Git history, use LFS.
+
+3. How to Track LFS Files
+
+Install Git LFS on your local machine:
+
+git lfs install
+
+Track specific types of files:
+
+git lfs track "*.psd"
+git lfs track "*.mp4"
+git lfs track "*.bin"
+
+Commit the .gitattributes file created by LFS:
+
+git add .gitattributes
+git commit -m "Track large files with LFS"
+
+4. Tips
+
+Don’t track small, frequently-changing files with LFS; it adds overhead.
+
+Plan your .gitattributes at the start of the project to avoid retrofitting.
+
+Keep backups of the LFS storage folder—losing it can break your repo.
+
+++ Create a file server for Git LFS (Large File Storage).
+
+Git LFS stores large files separately from your Git repository, usually on a dedicated server or cloud storage. Here’s a clear guide to setting up your own Git LFS server:
+
+1. Prerequisites
+
+A server with SSH or HTTP access (Linux recommended).
+
+Git installed on the server.
+
+Optional: Nginx or Apache if you want HTTP access.
+
+2. Choose a Git LFS Server Implementation
+
+There are multiple ways to host Git LFS:
+
++++ Option A: Use git-lfs-server (simple, open source)
+
+A lightweight server written in Go.
+
+GitHub: https://github.com/git-lfs/lfs-test-server
+
+Steps:
+
+Install Go on the server if needed.
+
+Clone the repository:
+
+git clone https://github.com/git-lfs/lfs-test-server.git
+cd lfs-test-server
+go build
+
+Create a directory to store LFS files:
+
+mkdir -p /srv/git-lfs
+
+Run the server:
+
+./lfs-test-server -dir /srv/git-lfs -port 8080
+
+Point your Git repository to use it:
+
+git lfs install
+git lfs track "*.bin"
+git remote set-url origin http://your-server:8080/your-repo.git
+
++++ Option B: Serve via HTTP using git-lfs + a normal Git server
+
+Set up a normal Git server (bare repository):
+
+mkdir -p /srv/git/myrepo.git
+cd /srv/git/myrepo.git
+git init --bare
+
+Enable Git LFS support in the repo:
+
+git lfs install
+
+Configure your Git LFS server URL (for pushing/pulling):
+
+git config lfs.url http://your-server/myrepo.git/info/lfs
+
+Set up a web server (like Nginx or Apache) to serve /srv/git/myrepo.git/info/lfs.
+
+Option C: Use Ready Solutions
+
+Gitea – lightweight self-hosted Git server with Git LFS support.
+
+GitLab CE – full-featured Git server with LFS support built-in.
+
+3. Configure Your Client
+
+On your local machine:
+
+git lfs install
+git lfs track "*.psd"  # or any large file type
+git add .gitattributes
+git add <your-large-files>
+git commit -m "Add large files"
+git push origin main
+
+4. Notes
+
+HTTP is easier for clients behind firewalls, SSH is simpler for trusted environments.
+
+Always back up the LFS storage folder; it contains all your large files.
+
+If you use git-lfs-server or HTTP, make sure to secure it with HTTPS or authentication.
+
+
+Create a private Git LFS server using Docker
+
+Here’s a ready-to-run Docker setup for a private Git LFS server using the lfs-test-server image. This is simple and self-contained.
+
+1. Create a Directory for Storage
+
+On your host machine, create a folder for LFS files and configuration:
+
+mkdir -p ~/git-lfs-server/data
+
+This folder will persist your LFS files outside the container.
+
+2. Create a docker-compose.yml
+version: "3"
+
+services:
+  git-lfs:
+    image: registry.gitlab.com/git-lfs/lfs-test-server:latest
+    container_name: git-lfs-server
+    ports:
+      - "8080:8080"  # HTTP port
+    volumes:
+      - ./data:/data
+    environment:
+      LFS_DIR: /data
+
+
+ports: Change 8080 if you want a different HTTP port.
+
+./data:/data: Maps host folder to container storage.
+
+3. Start the Server
+docker-compose up -d
+
+Check logs to confirm it’s running:
+
+docker-compose logs -f
+
+4. Configure Your Git Repository
+
+On your local machine:
+
+git lfs install
+git lfs track "*.bin"  # track large files
+git add .gitattributes
+git add <your-large-files>
+git commit -m "Add LFS files"
+
+Set the LFS URL for your repo:
+
+git remote add origin http://YOUR_SERVER_IP:8080/your-repo.git
+git config lfs.url http://YOUR_SERVER_IP:8080/your-repo.git/info/lfs
+git push origin main
+
+5. Optional: Enable HTTPS
+
+For production use, it’s better to put Nginx or Caddy in front of the container with SSL. Example:
+
+server {
+    listen 443 ssl;
+    server_name git-lfs.example.com;
+
+    ssl_certificate /etc/ssl/fullchain.pem;
+    ssl_certificate_key /etc/ssl/privkey.pem;
+
+    location / {
+        proxy_pass http://127.0.0.1:8080;
+    }
+}
+
+Done! You now have a private Git LFS server running in Docker. All your large files will be stored in ~/git-lfs-server/data.
+
+------------------------------------------------------------------------------->
+What happens if you track an image using Git LFS but the Git LFS server is down
+------------------------------------------------------------------------------->
+
+What happens if you track an image using Git LFS but the Git LFS server is down when you commit and push?
+
+Here’s what happens in that scenario:
+
+1. Committing Locally
+
+Git LFS stores the file as a pointer locally in your repository.
+
+You can commit normally in Git, even if the LFS server is down, because the commit only records a small text “pointer” file that references the large file.
+
+No large file is uploaded yet, so the commit succeeds.
+
+2. Pushing to Remote
+
+When you run git push (or git push origin main), Git LFS tries to upload the actual large file to the LFS server.
+
+If the LFS server is down:
+
+The push will fail with an error like:
+
+Git LFS: Upload failed for <filename>
+batch request: Post <server URL>/objects/batch: dial tcp <IP>: connect: connection refused
+
+The Git commit itself may still reach the Git remote, but the pointer in the repo points to a file that wasn’t uploaded.
+
+Any other user cloning or pulling the repo will not be able to get the actual large file, only the pointer.
+
+3. What to Do
+
+Wait until the LFS server is back online and push again.
+
+Git LFS keeps track of which files still need to be uploaded, so a retry will resume the upload.
+
+You can also check which files are pending:
+
+git lfs status
+
+| Action                    | Server up             | Server down                                            |
+| ------------------------- | --------------------- | ------------------------------------------------------ |
+| **Commit**                | Works                 | Works (pointer stored)                                 |
+| **Push**                  | Works, files uploaded | Fails for large files, pointer pushed but file missing |
+| **Clone / Pull (others)** | Works                 | Fail to download large files, errors appear            |
+
+Key takeaway: Your Git history is safe, but collaborators won’t get the real large files until the LFS server is back online.
+
+
+How to keep working offline with LFS files even when the server is down—very handy for unstable servers?
+
+1. Understand Local Storage
+
+When you commit LFS-tracked files, Git stores a pointer in .git and the actual large file in the local LFS cache (~/.git/lfs/objects by default).
+
+This means you can still work locally with your files even if the LFS server is offline.
+
+2. Using LFS Files Offline
+
+You can edit, commit, and manage LFS files locally just like normal files.
+
+The .gitattributes file ensures Git knows these are LFS-tracked files.
+
+Example workflow offline:
+
+git add my_large_file.mp4
+git commit -m "Update video file offline"
+
+This works even if the server is down.
+
+3. Pushing Later
+
+Once the LFS server is back online, simply push as usual:
+
+git push origin main
+
+Git LFS will detect which files need uploading and send only those files.
+
+You can check pending uploads:
+
+git lfs status
+
+4. Sharing With Collaborators
+
+While offline or server-down, other collaborators cannot pull the LFS files. They’ll get the pointer files and see an error if they try to check out the content.
+
+To prevent blocking them:
+
+Push the Git commits without LFS files temporarily if needed.
+
+Or work locally until the LFS server is back.
+
+5. Optional: Local LFS Server
+
+You can also set up a local LFS server for temporary offline use.
+
+Example: Docker container running lfs-test-server on your machine. Point your repo to it:
+
+git config lfs.url http://localhost:8080/your-repo.git/info/lfs
+
+This way, all LFS operations stay local until you push to the real remote.
+
+Key Takeaway: Git LFS lets you commit and work locally offline, because the large files are cached. The only limitation is that collaborators can’t fetch LFS files until the server is online.
+
+
+
+
+
+-------------------------------------------------------->
 
 -------------------------------------------------------->
 
 
+-------------------------------------------------------->
+
+-------------------------------------------------------->
 
 
 -------------------------------------------------------->
@@ -1386,9 +1839,11 @@ Remember to prefix the branch name with either feature/, experiment/, or dev/ to
 -------------------------------------------------------->
 
 
-
 -------------------------------------------------------->
 
 -------------------------------------------------------->
 
 
+-------------------------------------------------------->
+
+-------------------------------------------------------->
