@@ -22,6 +22,7 @@ Verified vs unverified commits (GPG key)
 Git Stash
 
 Create and set up a new repository on gitlab.com
+Reconfigure git user and email on a fresh OS installation before running any new commit
 
 git config – How to Configure Git Settings to Improve Your Development Workflow
 git restore
@@ -39,13 +40,21 @@ Is there a way to know who downloads my Github repository
 GitHub: Tab size preferences. Emoji skin tone preferences
 Git Blame commands
 
+Summary of Commands to Show Changes VS Git Diff Comparison Commands
+Resolving a conflict
+Undoing Changes in Git: revert, reset, checkout, and clean – When and How to Use Them
+Restoring an old version of a file
+
 5 tips to improve your Code Reviews on GitHub
 GitHub: Start with a pull requested
 GitHub: About pull request reviews
 Managing code review settings for your team
 The Best Way To Do A Code Review On GitHub
 Choosing a name for a Git branch
+Paste public github file content on OpenAI's ChatGPT using prompts
 
+
+Reduce the size of the repository by rewriting the branch history
 Git Large File Storage (LFS) - Replaces large files
 Git LFS servers
 What happens if you track an image using Git LFS but the Git LFS server is down
@@ -57,7 +66,6 @@ VS code Extensions
 Those installations are in the Neovim editor documentation.
 
 - Stash from the course from GitKraken
-
 
 ---------------------------------------------->
 A GIT manual, from the Book DIY Linux
@@ -250,6 +258,12 @@ Verify changes in local and remote repo, history, etc:
 $ git log
 
 * IE: $ git log [from] [to]
+
+git log → shows history of commits.
+
+git log -p → shows history plus detailed changes in each commit.
+
+It’s very useful when you want to review what changed over time, not just the commit messages.
 
 Show fetch and push addresses:
 $ git remote show https://github.com/.../proj.git
@@ -1076,6 +1090,91 @@ https://github.com/settings/keys
 Topic: Managing commit signature verification.
 https://docs.github.com/en/authentication/managing-commit-signature-verification
 
+Here’s a clear explanation of verified vs unverified commits on GitHub, especially regarding GPG keys:
+
+1. What are Verified Commits?
+
+A verified commit on GitHub indicates that the commit was signed with a GPG (GNU Privacy Guard) key that is associated with your GitHub account. GitHub confirms that the commit was indeed made by the person who claims to have made it, adding a layer of trust and security.
+
+Key points:
+
+A commit is verified when it is cryptographically signed with your private GPG key.
+
+GitHub checks the signature against your public key linked to your GitHub account.
+
+Verified commits show a “Verified” badge next to them in GitHub's interface.
+
+Example:
+
+commit 9a1b2c3d4e5f6g7h8i9j0k
+Author: Esteban Herrera <esteban@example.com>
+Verified: ✅
+
+2. What are Unverified Commits?
+
+An unverified commit is a commit that either:
+
+Was not signed with a GPG key, or
+
+Was signed with a GPG key not associated with your GitHub account, or
+
+Has a signature that cannot be verified (e.g., expired or mismatched key).
+
+Key points:
+
+Unverified commits do not have a “Verified” badge.
+
+They can still be trusted if you know the author, but GitHub cannot confirm authenticity cryptographically.
+
+Often appears as “Unverified” in GitHub commits list.
+
+3. How to Sign Commits with a GPG Key
+
+Generate a GPG key:
+
+gpg --full-generate-key
+
+
+List your keys:
+
+gpg --list-secret-keys --keyid-format LONG
+
+
+Configure Git to use the key:
+
+git config --global user.signingkey <your-key-id>
+git config --global commit.gpgsign true
+
+
+Add the public key to GitHub:
+
+Go to Settings → SSH and GPG keys → New GPG key.
+
+Paste your public key.
+
+After this, all commits you make with that key will show as verified.
+
+4. Why Verified Commits Matter
+
+Security: Ensures the commit was actually made by the claimed author.
+
+Trust: Important for open-source projects and collaboration.
+
+Accountability: Makes tampering harder, especially in critical codebases.
+
+5. Common Issues with Unverified Commits
+
+Using the wrong email in Git commits (must match GitHub account).
+
+Expired or revoked GPG key.
+
+Commit made on a machine without your configured GPG key.
+
+| Commit Type       | Signed with GPG Key? | Associated with GitHub Account? | Badge on GitHub |
+|------------------|-------------------|-------------------------------|----------------|
+| Verified          | ✅ Yes            | ✅ Yes                         | ✅ Verified     |
+| Unverified        | ❌ No / ❌ Invalid | ❌ No / Mismatch               | ❌ Unverified   |
+
 -------------------------------------------------------->
 Git Stash
 -------------------------------------------------------->
@@ -1164,6 +1263,25 @@ Create and set up a new repository on gitlab.com
 -------------------------------------------------------->
 
 TODO:
+
+-------------------------------------------------------->
+Reconfigure git user and email on a fresh OS installation before running any new commit
+-------------------------------------------------------->
+
+Configure user and email to change auto setup values on a fresh git installation before proceed with the first commit. Otherwise, git will store the commit using the host credentials. Hopefully, this commit can be amended and would me better to amend the commit before the next push to the origin if exists.
+
+Example:
+
+$ git commit -m "Update file permissions"
+
+Output:
+[feature/estebanways 789745c] Update file permissions
+Committer: commbase <commbase@commbase.commbase.aestudio.sytes.net> Your name and email address were configured automatically based on your username and hostname. Please check that they are accurate. You can suppress this message by setting them explicitly:
+git config --global user.name "Your Name"
+git config --global user.email you@example.com
+After doing this, you may fix the identity used for this commit with:
+git commit --amend --reset-author
+1 file changed, insertions(+), ℗ deletions(-) mode change 100644 -> 100755 Module5/Split/Split.txt
 
 -------------------------------------------------------->
 git config – How to Configure Git Settings to Improve Your Development Workflow
@@ -1330,6 +1448,208 @@ Getting Help:
 $ man git-blame
 $ git help blame
 
+---------------------------------------------->
+Summary of Commands to Show Changes VS Git Diff Comparison Commands
+---------------------------------------------->
+
+Summary of Commands to Show Changes VS Git Diff Comparison Commands
+
+| Command | Description |
+|----------|--------------|
+| `git diff` | Show unstaged changes in the working directory compared to the index (staging area). |
+| `git diff 35f4b4d 186398f` | Show changes between two specific commits. |
+| `git diff HEAD~1 HEAD~2` | Show differences between two recent commits. |
+| `git show HEAD~1` | Display details and changes from the second most recent commit. |
+| `git annotate <file>` | Show line-by-line changes with the author and commit information. |
+
+Additional Useful Commands to Show Changes
+
+| Command                | Description                                                                                                  |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `git status`           | Summarize which files are modified, staged, or untracked.                                                    |
+| `git diff --staged`    | Show changes between the staged (index) files and the last commit.                                           |
+| `git log -p`           | Show commit history along with the diff for each commit.                                                     |
+| `git show <commit>`    | Display metadata and changes introduced by a specific commit. *(You already have an example with `HEAD~1`.)* |
+| `git blame <file>`     | Similar to `git annotate`, shows who last modified each line of a file.                                      |
+| `git diff --name-only` | List only the names of changed files, not their contents.                                                    |
+| `git diff --stat`      | Show a summary of changes (number of insertions/deletions per file).                                         |
+
+Git Diff Comparison Commands
+
+| **Command**                 | **Description**                                                      |
+| --------------------------- | -------------------------------------------------------------------- |
+| `git diff filename`         | Compare an **unstaged file** with the **last committed version**.    |
+| `git diff -r HEAD filename` | Compare a **staged file** with the **last committed version**.       |
+| `git diff -r HEAD`          | Compare **all staged files** with their **last committed versions**. |
+
+---------------------------------------------->
+Resolving a conflict
+---------------------------------------------->
+
+If you just pushed changes in a commit but you realize you need to amend the commit message.
+
+To avoid this mistake as possible, always read and check the last commit using git log.
+
+git commit -m "Commit message with errors testtttt"
+git commit -amend -m "Commit message with errors test"
+git push origin main
+
+This second commit is goningn to return and error:
+
+To github.com:estebanways/DeveloperEnvironment.git
+ ! [rejected]        main -> main (non-fast-forward)
+error: failed to push some refs to 'github.com:estebanways/DeveloperEnvironment.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+The following command will give you the next step options (use the appropriate branch, the one you are working on):
+git pull origin main
+
+You will get more errors with the steps to merge the changes:
+
+hint:   git config pull.rebase false  # merge
+hint:   git config pull.rebase true   # rebase
+hint:   git config pull.ff only       # fast-forward only
+
+So run:
+git config pull.rebase false
+
+And then try to pull before pushing:
+git pull origin main
+
+At this point you will get the default text editor open, commonly nano.
+
+There you can type the next message:
+"Pull latest report from https://github.com/estebanways/project"
+
+Save changes to the report.
+
+Finally, push the amended commit.
+git push origin main
+
+Note:
+You will be able to push changes on GitHub, but the commit with the error message does not dissapear. At least, the file list on GitHub will show the corrected commit message instead of the previous commit with message errors.
+
+In any case, try to push changes to user branches before merging changes to official repo branches to ensure that your work is tested, reviewed, and does not break the main codebase.
+
+ALternatives:
+Move the head to the previous commit. Locally is ok, but after a push will affect other repo users.
+
+Related topics:
+You are in a situation where you really need to undo some commits but other people have already pulled those changes.
+How do I delete previous commits (on git and/or GitHub)
+We accidentally left off a file that we meant to commit
+
+---------------------------------------------->
+Undoing Changes in Git: revert, reset, checkout, and clean – When and How to Use Them
+---------------------------------------------->
+
+git revert allows you to undo a change in a shared branch.
+
+You apply a commit that introduces an unintended change to the target branch of the repository. You need to run a Git command that will undo the change applied by the commit.
+
+git revert
+
+Compare to 'git reset'.
+
+------------------------------------------
+
+git reset -mixed HEAD
+
+git reset --mixed HEAD undoes the staging of files but keeps file changes. It does not affect commits.
+
+GIT MAN Topic: How do I delete previous commits (on git and/or GitHub)
+
+Discard changes in all tracked files (files that Git is currently tracking).
+
+git reset --hard
+
+Effect: Resets your current branch completely to a specific commit. By default, if you don’t specify a commit, it resets to HEAD. This affects:
+
+Working directory (your files) → reverted to match the commit
+
+Staging area (index) → cleared to match the commit
+
+HEAD → stays at the commit you reset to (or moves if you specify a commit)
+
+Example:
+
+git reset --hard
+
+
+Discards all local changes (both staged and unstaged) and makes your files exactly match the last commit.
+
+If you want to reset to an older commit:
+
+git reset --hard <commit-hash>
+
+Important: This cannot be undone easily if the changes are not committed somewhere; your work is lost.
+
+Compare to git 'revert'.
+Compare git reset --hard to git checkout -- .
+
+-----------------------------------------
+
+git reset --hard VS git checkout -- .
+
+This is a subtle but important distinction in Git! Both git reset --hard and git checkout -- . can revert changes, but they work at different levels and affect different things.
+
+| Command              | Affects Working Directory | Affects Staging Area | Moves HEAD? | Can lose uncommitted changes?       |
+|----------------------|--------------------------|--------------------|------------|-----------------------------------|
+| git reset --hard     | Yes                      | Yes                | Yes        | Yes                               |
+| git checkout -- .    | Yes                      | No                 | No         | Yes (for unstaged changes)        |
+
+
+Quick rule of thumb:
+Use git checkout -- . when you want to discard unstaged edits only.
+Use git reset --hard when you want to wipe everything and reset your branch completely.
+
+----------------------------------------
+
+git checkout -- .
+
+Discard changes on files using Git.
+
+Effect: Only discards changes in the working directory (your files) for the current folder (or you can target a specific file). It does not affect:
+
+The commit history → HEAD doesn’t move
+
+The staging area → changes in the index are untouched unless you specifically reset those too
+
+Reverts all unstaged changes in the current directory to match the last commit.
+
+If you want to revert a specific file:
+
+git checkout -- <file_path>
+
+This command will discard the changes made to the specified file and revert it to the last committed state.
+
+----------------------------------------
+
+git clean deletes untracked files but does not undo a commit.
+
+git clean
+
+-----------------------------------------
+
+git rebase integrates source branch commits into the target branch, it does not undo changes.
+
+git rebase
+
+---------------------------------------------->
+Restoring an old version of a file
+---------------------------------------------->
+
+git checkout -- filename
+
+To revert to a version from a specific commit:
+git checkout dc9d8fac mental_health_survey.csv
+
+This was the second to last commit, so another approach is:
+git checkout HEAD~1 mental_health_survey.csv
+
 -------------------------------------------------------->
 5 tips to improve your Code Reviews on GitHub
 -------------------------------------------------------->
@@ -1379,7 +1699,7 @@ experiment/estebanways
 Remember to prefix the branch name with either feature/, experiment/, or dev/ to maintain consistency with Git branch naming conventions. Additionally, feel free to customize the branch name further based on your project's naming conventions or personal preferences.
 
 -------------------------------------------------------->
-Paste public github file content on OpenAI's ChatGPT using prompts:
+Paste public github file content on OpenAI's ChatGPT using prompts
 -------------------------------------------------------->
 
 open https://github.com/estebanways/multiple-dev-container-vscode/blob/master/python-src/hello.py from estebaways
@@ -1391,6 +1711,19 @@ Certainly! Here's the content of the hello.py file from the GitHub repository yo
 python
 print("Hello from Python!")
 This simple script prints the message "Hello from Python!" to the console.
+
+-------------------------------------------------------->
+Reduce the size of the repository by rewriting the branch history
+-------------------------------------------------------->
+
+You have a Git repository that is used by your team to collaborate on a project. The repo contains a single branch with a long history of changes.
+You need to reduce the size of the repository by rewriting the branch history.
+
+The git filter-branch and git filter-repo commands support rewriting history for a specific branch, which significantly reduces the repository size in this scenario.
+
+git filter-branch
+
+git filter-repo
 
 -------------------------------------------------------->
 Git Large File Storage (LFS) - Replaces large files
