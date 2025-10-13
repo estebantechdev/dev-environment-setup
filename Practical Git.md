@@ -1,5 +1,3 @@
-ERROR
-
 Practical Git
 Workflows and commands for real projects.
 
