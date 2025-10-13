@@ -1,5 +1,10 @@
-Title: GIT MAN
-Description: This is a compilation of all my Git manuals all in one file
+Practical Git
+Workflows and commands for real projects.
+
+Descriptions:
+A complete compilation of Git tutorials, practical notes, and challenges designed to guide developers from first commit to advanced workflows.
+This manual gathers every Git concept, command, and technique I’ve learned—tested in real development environments and organized for quick reference.
+A personal collection of Git practices, tips, and experiments. Built from hands-on experience, this guide aims to turn version control into second nature.
 
 Author: Esteban Herrera
 
@@ -861,7 +866,7 @@ $ git checkout [HASH]
 4. Run a git log:
 $ git log
 At this point we must see the changes back. We must see the commit immediately previous to the "reset commit".
-Know, right now we are in a detached head state, which basically means that we aren't on a branch. Were we currently are it will be trashed at some point in the future. So, to solve these changes we need to make a branch from it.
+Know, right now we are in a detached head state, which basically means that we aren't on a branch. Where we currently are it will be trashed at some point in the future. So, to solve these changes we need to make a branch from it.
 5. Make a branch for the point in the future:
 $ git branch backup
 6. Look at all my branches:
