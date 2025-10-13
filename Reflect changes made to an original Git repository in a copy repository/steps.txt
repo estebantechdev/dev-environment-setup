@@ -24,9 +24,16 @@ git pull origin main
 - Remove all the directories and files except .git/ in the copy repo
 ---------------------------------------------------------------------
 
+Check the repo directory properties include number of files and content size.
+
+For example:
+242.5 MiB (254,269,288)
+3,378 files, 384 sub-folders
+
+You can use the script detailed-directory-info.sh to retrieve that information.
+
 - Paste a copy of the content, except .git/ from the original repo to the copy repo
 ------------------------------------------------------------------------------------
-
 
 - In the copy repo
 -------------------
@@ -35,6 +42,8 @@ git pull origin main
 
 git diff > tmp_diff.txt
 ```
+
+Paste the file to the directory: Reflect changes made to an original Git repository in a copy repository.
 
 - Select pieces of text to paste in ChatGPT
 --------------------------------------------
@@ -139,7 +148,12 @@ Add the results to the current section.
 Prompt ChatGPT to Summarize the changes by file, using:
 
 1. The new content of the file tmp_diff_consolidated.txt.
-2. it is supposed that we are yet in the same ChatGPT conversation so it remembers the previous git diff made.
+2. It is supposed that we are yet in the same ChatGPT conversation so it remembers the previous git diff made.
+3. If you find mistakes or missing information at this point, you can compare any file version in the copy repository like this:
+
+```shell
+git diff bundles/commbase-stt-whisper-proactive-p/commbase_stt_whisper_proactive_p.py
+```
 
 )
 
@@ -172,12 +186,20 @@ Prompt:
 Draw a conclusion based on the next information ...
 )
 
-- Summarize the list using the new content of tmp_commit.txt
-------------------------------------------------------------
+- Summarize the list using the new content of tmp_commit.txt, save it in tmp_updates.txt
+-----------------------------------------------------------------------------------------
 
 Save the summary in tmp_updates.txt
 
-If it is too big,  keep only list of the most significant/remarkable one (This will be used later on in the PULL REQUEST in the copy repo.)
+Use titles like:
+
+### Enhancing Commbase: A Comprehensive Overview
+
+or:
+
+### Summary of Consolidating Changes in Commbase Repository
+
+If the summary is too big, keep only a list of the most significant/remarkable one (This will be used later on in the PULL REQUEST in the copy repo.)
 
 Prompts for ChatGPT:
 Make a summary using
@@ -204,7 +226,7 @@ The changes made in this update include:
 [OK] Adding new files to manage the conversations directory.
 
 - Commit using the content of tmp_commit.txt to the copy repository on local and push changes on GitHub.com
------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
 
 ```shell
 # Make sure you checked out your feature branch
@@ -231,6 +253,16 @@ Title:
 - Introducing a new configuration variable for benchmarking speech processing time.
 (...)
 
+- Backdrop build.com update or ship text field version
+-------------------------------------------------------
+
+Use the following title and structure in the field:
+
+Summary of Shipped Updates:
+
+- point 1
+- point 2
+- point 3
 
 For an alternative version of the update for a CEO or non technical, you can ask ChatGPT:
 
