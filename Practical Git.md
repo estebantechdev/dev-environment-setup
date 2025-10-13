@@ -471,7 +471,7 @@ Correct the last commit message with typos:
 	Read the file: Changing a commit message - GitHub Docs.pdf, or visit github for details.
 
 Check log:
-	git log - renders commit ids (hashes), authors, dates. Press key Q to exit
+	git log - renders commit id (hash), author, date, and commit message. Press key Q to exit
 	
 
 *** The next commands are mainly, but not only, for the second scenario:
