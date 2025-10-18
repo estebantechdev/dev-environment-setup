@@ -466,31 +466,44 @@ Committing:
 
 Correct the last commit message with typos:
 
-	Commit has not been pushed online:
-        git --amend
-	Steps in the editor:
-	Press INSERT key
-	Edit the file
-	Switch between INSERT and DEL modes as required to edit
-	When the amend is ready, press ESC and then SHIFT + Q, I will see just ":", then type "wq!" then press ENTER to save the commit message changes. 
-	If you don't want to apply the changes, type "qa!" at the ":" prompt
-	Type "visual" to return to the edition mode from the ":" prompt
+- Commit has not been pushed online:
 
-	If you have already pushed the commit to GitHub, you will have to force push a commit with an amended message:
-	We strongly discourage force pushing, since this changes the history of your repository. If you force push, people who have already cloned your repository will have to manually fix their local history. For more information, see "Recovering from upstream rebase" in the Git manual.
+git --amend
 
-	Changing the message of the most recently pushed commit
-	Follow the steps above to amend the commit message.
-	Use the push --force-with-lease command to force push over the old commit:
-	$ git push --force-with-lease example-branch
+Steps in the editor:
 
-	Changing the message of older or multiple commit messages:
-	If you need to amend the message for multiple commits or an older commit, you can use interactive rebase, then force push to change the commit history.
-	Read the file: Changing a commit message - GitHub Docs.pdf, or visit github for details.
+Press INSERT key
+
+Edit the file
+
+Switch between INSERT and DEL modes as required to edit
+
+When the amend is ready, press ESC and then SHIFT + Q, you will see just “:”, then type wq! and press ENTER to save the commit message changes.
+
+If you don’t want to apply the changes, type qa! at the “:” prompt
+
+Type visual to return to the edition mode from the “:” prompt
+
+- If you have already pushed the commit to GitHub, you will have to force push a commit with an amended message:
+
+We strongly discourage force pushing, since this changes the history of your repository. If you force push, people who have already cloned your repository will have to manually fix their local history.
+
+For more information, see “Recovering from upstream rebase” in the Git manual.
+
+Changing the message of the most recently pushed commit:
+
+Follow the steps above to amend the commit message.
+
+Use the following command to force push over the old commit:
+
+git push --force-with-lease example-branch
+
+Changing the message of older or multiple commits:
+If you need to amend the message for multiple commits or an older commit, you can use interactive rebase, then force push to change the commit history.
+Read the file Changing a commit message - GitHub Docs.pdf, or visit GitHub for details.
 
 Check log:
 	git log - renders commit id (hash), author, date, and commit message. Press key Q to exit
-	
 
 *** The next commands are mainly, but not only, for the second scenario:
 
@@ -529,9 +542,9 @@ Checkout a branch (Begin working on that branch, by switching from main to it):
 Get to know which branch are we working on (Use VS Code or Oh my ZSh! terminal):
 	git branch
 
-	Remember: At this point I can make changes, add them, and commit them to the files on the current branch (feature branch, named "calc-divide")
-	Example: git commit -m "Divide function"
-	This has no effect on the main branch or the remote repository
+Remember: At this point I can make changes, add them, and commit them to the files on the current branch (feature branch, named "calc-divide")
+Example: git commit -m "Divide function"
+This has no effect on the main branch or the remote repository
 
 Push new branch to the remote repository:
 	git push -u origin calc-divide - The u option just tells git we want to associate our local calc-divide branch with the remote calc-divide branch. In the future, git will know that those two branches are associated to each other.
@@ -556,6 +569,34 @@ Delete a branch:
 	git branch -d <name of the branch> - this deletes it locally!!!
 	git branch -a - check the repo branches 
 	git push origin --delete <name of the branch> - this deletes it from the repo (remotely)!
+
+
+Alternative to:
+There is an alternative to force pushing after you have committed on GitHub with a wrong commit messages. It consits of a conflict resolution. The downside is that it keeps the commit with the error in the git log, which is not a big deal if we pushed to our own branch, and avoids the problem of removing the other user changes that pushed to the same branch since your last pull.
+
+Topic:
+Resolving a conflict
+
+git push --force origin <branch> VS git push --force-with-lease origin <branch>:
+
+--force: overwrites the remote branch unconditionally, even if others have pushed new commits since your last pull.
+This can erase others’ work or cause divergence if you’re not the only one working on that branch.
+
+--force-with-lease: safer version of --force.
+It overwrites only if no one else has updated the remote branch since your last fetch/pull.
+If someone else has pushed changes, it refuses to overwrite — protecting their commits.
+
+Recommended use
+
+If you’re the only one working on that branch (for example, a feature branch in your own repo), then:
+
+git push --force origin <branch>
+
+is fine.
+
+If it’s a shared branch (like main, develop, or any branch used by others), you should always prefer:
+
+git push --force-with-lease origin <branch>
 
 ---------------------------------------------------------->
 CHALLENGE: Create a pull request on GitHub
@@ -1541,6 +1582,9 @@ Related topics:
 You are in a situation where you really need to undo some commits but other people have already pulled those changes.
 How do I delete previous commits (on git and/or GitHub)
 We accidentally left off a file that we meant to commit
+
+Alternative to:
+- If you have already pushed the commit to GitHub, you will have to force push a commit with an amended message:
 
 ---------------------------------------------->
 Undoing Changes in Git: revert, reset, checkout, and clean – When and How to Use Them
