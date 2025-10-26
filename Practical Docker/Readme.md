@@ -15,8 +15,8 @@ A practical guide for installing Docker, creating containers, and transferring t
     - [Store persistent data for your Debian Trixie container using docker run](./Create%20Debian%20Trixie%20Docker%20Containers.md#store-persistent-data-for-your-debian-trixie-container-using-docker-run)
     - [Store persistent data for your Debian Trixie container using docker compose](./Create%20Debian%20Trixie%20Docker%20Containers.md#store-persistent-data-for-your-debian-trixie-container-using-docker-compose)
     - [Options to persist multiple directories](./Create%20Debian%20Trixie%20Docker%20Containers.md#options-to-persist-multiple-directories)
-      - [Make a ready-to-use Dockerfile + Compose setup that automates the symlinks and directory creation](./Create%20Debian%20Trixie%20Docker%20Containers.md#make-a-ready-to-use-dockerfile--compose-setup-that-automates-the-symlinks-and-directory-creation)
-      - [Enhance the Debian Trixie container to include common development tools so it’s ready to use right away](./Create%20Debian%20Trixie%20Docker%20Containers.md#enhance-the-debian-trixie-container-to-include-common-development-tools-so-its-ready-to-use-right-away)
+    - [Make a ready-to-use Dockerfile + Compose setup that automates the symlinks and directory creation](./Create%20Debian%20Trixie%20Docker%20Containers.md#make-a-ready-to-use-dockerfile--compose-setup-that-automates-the-symlinks-and-directory-creation)
+    - [Enhance the Debian Trixie container to include common development tools so it’s ready to use right away](./Create%20Debian%20Trixie%20Docker%20Containers.md#enhance-the-debian-trixie-container-to-include-common-development-tools-so-its-ready-to-use-right-away)
 - Export and Import Containers
   - [Export and Import Docker containers](./Export%20and%20Import%20Docker%20containers.md)
     - [Export a Docker container and move it to another machine](./Export%20and%20Import%20Docker%20containers.md#export-a-docker-container-and-move-it-to-another-machine)
