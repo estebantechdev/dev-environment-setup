@@ -1,13 +1,19 @@
 Practical Docker
 ================
 
+---
+
 ## Content
+
+---
 
 ## Docker Installation
 
 ### How to install Docker on Windows 10
 
 ### How to install Docker on Debian 13, codename Trixie
+
+---
 
 ## Creating Containers
 
@@ -29,6 +35,8 @@ Practical Docker
 
 #### Enhance the Debian Trixie container to include common development tools so it’s ready to use right away
 
+---
+
 ## Export and Import Containers
 
 ### Export and Import Docker containers
@@ -42,5 +50,3 @@ Practical Docker
 ##### Are this steps restoring changes made to the container on the previous machine?
 
 #### Export and Import containers using Scripts
-
-
