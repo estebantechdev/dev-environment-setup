@@ -191,7 +191,7 @@ docker run -d --name mycontainer -v myvolume:/app/data myimage:latest
 
 (replace /app/data with the path inside the container where the volume was originally mounted).
 
-### Are this steps restoring changes made to the container on the previous machine?
+### Are these steps restoring changes made to the container on the previous machine?
 
 The answer depends on what kind of changes you mean.
 

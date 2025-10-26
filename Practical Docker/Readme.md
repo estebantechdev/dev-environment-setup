@@ -22,5 +22,5 @@ A practical guide for installing Docker, creating containers, and transferring t
     - [Export a Docker container and move it to another machine](./Export%20and%20Import%20Docker%20containers.md#export-a-docker-container-and-move-it-to-another-machine)
     - [How to export and import a container with a volume](./Export%20and%20Import%20Docker%20containers.md#how-to-export-and-import-a-container-with-a-volume)
     - [Step-by-step process that will export a container with its attached volumes so you can move everything](./Export%20and%20Import%20Docker%20containers.md#step-by-step-process-that-will-export-a-container-with-its-attached-volumes-so-you-can-move-everything)
-      - [Are this steps restoring changes made to the container on the previous machine?](./Export%20and%20Import%20Docker%20containers.md#are-this-steps-restoring-changes-made-to-the-container-on-the-previous-machine)
+      - [Are these steps restoring changes made to the container on the previous machine?](./Export%20and%20Import%20Docker%20containers.md#are-these-steps-restoring-changes-made-to-the-container-on-the-previous-machine)
     - [Export and Import containers using Scripts](./Export%20and%20Import%20Docker%20containers.md#export-and-import-containers-using-scripts)
