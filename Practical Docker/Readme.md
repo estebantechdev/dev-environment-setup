@@ -19,7 +19,7 @@ A practical guide for installing Docker, creating containers, and transferring t
     - [Enhance the Debian Trixie container to include common development tools so it’s ready to use right away](#enhance-the-debian-trixie-container-to-include-common-development-tools-so-its-ready-to-use-right-away)
 - Export and Import Containers
   - [Export and Import Docker containers](./Export%20and%20Import%20Docker%20containers.md)
-    - [Export a Docker container and move it to another machine](#export-a-docker-container-and-move-it-to-another-machine)
+    - [Export a Docker container and move it to another machine](./Export%20and%20Import%20Docker%20containers.md#export-a-docker-container-and-move-it-to-another-machine)
     - [How to export and import a container with a volume](#how-to-export-and-import-a-container-with-a-volume)
     - [Step-by-step process that will export a container with its attached volumes so you can move everything](#step-by-step-process-that-will-export-a-container-with-its-attached-volumes-so-you-can-move-everything)
       - [Are this steps restoring changes made to the container on the previous machine?](#are-this-steps-restoring-changes-made-to-the-container-on-the-previous-machine)
