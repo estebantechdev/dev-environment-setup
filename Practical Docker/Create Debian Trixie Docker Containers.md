@@ -507,7 +507,7 @@ It replaces /root and /home/user with symlinks pointing to the volume.
 
 Any files you create in these directories persist across container restarts.
 
-### Enhance the Debian Trixie container to include common development tools so it’s ready to use right away.
+### Enhance the Debian Trixie container to include common development tools so it’s ready to use right away
 
 Step 1: Updated Dockerfile
 
@@ -785,5 +785,3 @@ project/
     └── startup.sh
 
 ```
-
-

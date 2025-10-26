@@ -118,7 +118,7 @@ Transfer and copy back into the new container later:
 docker cp ./myvolume_data <new_container_id>:/app/data
 ```
 
-## Step-by-step process that will export a container with its attached volumes so you can move everything to another machine
+## Step-by-step process that will export a container with its attached volumes so you can move everything
 
 Your container is called `mycontainer`
 
