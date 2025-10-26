@@ -414,7 +414,7 @@ volumes:
 
 👉 This gives you full control, and you’ll see the files directly in your host filesystem.
 
-### Make a ready-to-use Dockerfile + Compose setup that automates the symlinks and directory creation
+## Make a ready-to-use Dockerfile + Compose setup that automates the symlinks and directory creation
 
 Step 1: Dockerfile
 
@@ -507,11 +507,11 @@ It replaces /root and /home/user with symlinks pointing to the volume.
 
 Any files you create in these directories persist across container restarts.
 
-### Enhance the Debian Trixie container to include common development tools so it’s ready to use right away
+## Enhance the Debian Trixie container to include common development tools so it’s ready to use right away
 
 Step 1: Updated Dockerfile
 
-IT includes a setup so you enter the container directly as user with bash.
+It includes a setup so you enter the container directly as user with bash.
 
 ```Dockerfile
 FROM debian:trixie
