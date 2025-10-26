@@ -366,6 +366,9 @@ $ git commit --amend --reset-author
 Replace username:
 $ git config --global --replace-all user.name "Esteban Herrera"
 
+List global configuration:
+$ git config --global --list
+
 Show git commands:
 $ git help
 $ git help [commands]
