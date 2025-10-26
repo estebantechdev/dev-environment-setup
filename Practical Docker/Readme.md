@@ -4,10 +4,10 @@ A practical guide for installing Docker, creating containers, and transferring t
 
 ## 📚 Table of Contents
 
-- [Docker Installation](#docker-installation)
+- Docker Installation
   - [How to install Docker on Windows 10](./How%20to%20install%20Docker%20on%20Windows%2010.md)
   - [How to install Docker on Debian 13, codename Trixie](./How%20to%20install%20Docker%20on%20Debian%2013,%20codename%20Trixie.md)
-- [Creating Containers](#creating-containers)
+- Creating Containers
   - [Create Debian Trixie Docker Containers](./Create%20Debian%20Trixie%20Docker%20Containers.md)
     - [To create a Docker container running Debian Trixie (testing branch, codename "trixie")](#to-create-a-docker-container-running-debian-trixie-testing-branch-codename-trixie)
     - [Adding volumes to containers](#adding-volumes-to-containers)
@@ -17,7 +17,7 @@ A practical guide for installing Docker, creating containers, and transferring t
     - [Options to persist multiple directories](#options-to-persist-multiple-directories)
     - [Make a ready-to-use Dockerfile + Compose setup that automates the symlinks and directory creation](#make-a-ready-to-use-dockerfile--compose-setup-that-automates-the-symlinks-and-directory-creation)
     - [Enhance the Debian Trixie container to include common development tools so it’s ready to use right away](#enhance-the-debian-trixie-container-to-include-common-development-tools-so-its-ready-to-use-right-away)
-- [Export and Import Containers](#export-and-import-containers)
+- Export and Import Containers
   - [Export and Import Docker containers](./Export%20and%20Import%20Docker%20containers.md)
     - [Export a Docker container and move it to another machine](#export-a-docker-container-and-move-it-to-another-machine)
     - [How to export and import a container with a volume](#how-to-export-and-import-a-container-with-a-volume)
