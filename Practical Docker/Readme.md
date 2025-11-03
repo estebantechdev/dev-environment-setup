@@ -7,6 +7,7 @@ A practical guide for installing Docker, creating containers, and transferring t
 - Docker Installation
   - [How to install Docker on Windows 10](./How%20to%20install%20Docker%20on%20Windows%2010.md)
   - [How to install Docker on Debian 13, codename Trixie](./How%20to%20install%20Docker%20on%20Debian%2013,%20codename%20Trixie.md)
+  - [SSH to Debian WSL](./SSH%20to%20Debian%20WSL.md)
 - Creating Containers
   - [Create Debian Trixie Docker Containers](./Create%20Debian%20Trixie%20Docker%20Containers.md)
     - [To create a Docker container running Debian Trixie (testing branch, codename "trixie")](./Create%20Debian%20Trixie%20Docker%20Containers.md#to-create-a-docker-container-running-debian-trixie-testing-branch-codename-trixie)
