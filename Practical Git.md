@@ -9,6 +9,7 @@ A personal collection of Git practices, tips, and experiments. Built from hands-
 Author: Esteban Herrera
 
 Contents:
+How to install Git on MS Windows
 A GIT manual, from the Book DIY Linux
 Git Tutorial for Beginners, Summary of basic commands from YouTube
 CHALLENGE: Create a pull request on GitHub
@@ -59,13 +60,53 @@ Git Large File Storage (LFS) - Replaces large files
 Git LFS servers
 What happens if you track an image using Git LFS but the Git LFS server is down
 
-
+TODO:
 Pending:
 - A list of git tools
 VS code Extensions
 Those installations are in the Neovim editor documentation.
 
 - Stash from the course from GitKraken
+
+---------------------------------------------->
+How to install Git on MS Windows
+---------------------------------------------->
+
+To install Git on Windows, you should use the official Git for Windows installer available from the official Git website. The process is straightforward and involves downloading the executable file and running the setup wizard, generally accepting the default options. 
+Step 1: Download the installer 
+Open your web browser and go to the official Git website: https://git-scm.com/download/win.
+The download of the latest 64-bit Git for Windows installer (.exe file) should start automatically. If not, click the appropriate download link for your system. 
+Step 2: Run the installer 
+Once the download is complete, locate the downloaded .exe file (usually in your Downloads folder) and double-click it to launch the installer.
+When prompted by the User Account Control, click Yes to allow the app to make changes to your device. 
+Step 3: Follow the setup wizard 
+Read the GNU General Public License agreement and click Next.
+Select the installation destination folder. The default location (C:\Program Files\Git) is recommended for most users.
+On the "Select Components" screen, the default options are usually sensible. Ensure that "Windows Explorer integration" (including Git Bash Here and Git GUI Here) is checked for easy access from your right-click menu in File Explorer. Click Next.
+Select your desired default text editor for Git (e.g., VS Code, Notepad++, or Vim) from the dropdown list. The default is usually Vim. Click Next.
+Follow the prompts through the remaining configuration screens, accepting the default (recommended) options unless you have a specific reason to change them. Key settings include:
+Adjusting your PATH environment: The recommended option, "Git from the command line and also from 3rd-party software," allows you to use Git from any terminal (Command Prompt, PowerShell, or Git Bash).
+Configuring line ending conversions: The default "Checkout Windows-style, commit Unix-style line endings" is generally fine for cross-platform projects on Windows.
+Configuring the terminal emulator: The default MinTTY is suggested.
+Choosing a credential helper: Use the default Git Credential Manager Core.
+Click Install to begin the installation process.
+Step 4: Verify the installation
+Once the installation is complete, you can uncheck the option to view the release notes and click Finish.
+Open a new Command Prompt, PowerShell, or Git Bash terminal.
+Type the following command and press Enter:
+bash
+git --version
+Use code with caution.
+
+If the installation was successful, you will see the installed Git version number (e.g., git version 2.X.X.windows.1).
+Step 5: Configure Git (optional but recommended) 
+After installation, configure your Git username and email address. This information is associated with any commits you create: 
+bash
+git config --global user.name "Your Name"
+git config --global user.email "your_email@example.com"
+Use code with caution.
+
+You can verify your settings at any time by typing git config --list. 
 
 ---------------------------------------------->
 A GIT manual, from the Book DIY Linux
@@ -1120,9 +1161,25 @@ The problem is that you do not have your GitHub's SSH keys in your file ~/.ssh/i
 
 Remember to use the github account's email as the email parameter.
 
-$ ssh keygen -C stv.herrera@gmail.com
+$ ssh-keygen -t ed25519 -C stv.herrera@gmail.com
 
-Copy the passphrase to the clipboard and then go to paste it following the github.com instructions on GitHub.
+Copy the passphrase to the clipboard and then go to paste it following the instructions on GitHub.com
+
+$ ssh-add ~/.ssh/id_ed25519
+
+Insert your passphrase.
+
+$ cd path/to/clone/repo/dir
+
+$ git clone git@github.com:user/repo.git
+
+$ cd repo-dir
+
+Open VS Code Editor
+
+$ code .
+
+Or, open VS Code wherever and select `File > Open Folder`.
 
 -------------------------------------------------------->
 Verified vs unverified commits (GPG key)
@@ -1174,21 +1231,33 @@ Often appears as “Unverified” in GitHub commits list.
 
 3. How to Sign Commits with a GPG Key
 
+Configure Git to use a GPG key:
+
+$ git config --global user.signingkey <your-key-id>
+
+$ git config --global commit.gpgsign true
+
+Set this command to `false` if you want to disable the GPG verification.
+
+You can use an existent key or generate a new one for your device/user. It is recommended to create a new one just for Git.
+
 Generate a GPG key:
 
 gpg --full-generate-key
 
+To print the GPG key ID in ASCII format:
 
-List your keys:
+$ gpg --armor --export <GPG key ID>
 
-gpg --list-secret-keys --keyid-format LONG
+<GPG key ID>: You get it using listing your keys:
 
+$ gpg --list-secret-keys --keyid-format LONG
 
-Configure Git to use the key:
+```output
+sec    rsa3072/<GPG key ID>
+...
 
-git config --global user.signingkey <your-key-id>
-git config --global commit.gpgsign true
-
+```
 
 Add the public key to GitHub:
 
@@ -1197,6 +1266,58 @@ Go to Settings → SSH and GPG keys → New GPG key.
 Paste your public key.
 
 After this, all commits you make with that key will show as verified.
+
+Troubleshooting MS-Windows-WSL-Debian VS Code
+
+When proceeding with `git commit...` you get the error:
+
+```output
+error: gpg failed to sign the data: [GNUPG:] KEY_CONSIDERED C68C33E9FBE090488AEA80BBFF5A3D6759436166 2 [GNUPG:] BEGIN_SIGNING H10 [GNUPG:] PINENTRY_LAUNCHED 14546 curses 1.3.1 - xterm-256color :0 - 1000/1000 - gpg: signing failed: Inappropriate ioctl for device [GNUPG:] FAILURE sign 83918950 gpg: signing failed: Inappropriate ioctl for device
+```
+
+This specific error usually happens in WSL when GPG tries to open pinentry (the program that asks for your passphrase), but VS Code / WSL doesn’t give it a proper TTY.
+
+In other words: GPG can’t show the password prompt, so it fails.
+
+Fix 1 — Allow TTY for the gpg prompt
+
+Sometimes you just need to tell Git where the TTY is.
+
+Add this:
+
+$ export GPG_TTY=$(tty)
+
+Make it permanent:
+
+$ echo 'export GPG_TTY=$(tty)' >> ~/.bashrc
+
+$ source ~/.bashrc
+
+Test signing again:
+
+$ echo test | gpg --clearsign
+
+If a passphrase prompt appears inside the terminal, this fix worked.
+
+Fix 2 — Force GPG to use pinentry-tty
+
+WSL often cannot open the GUI or curses pinentry. Switching to the TTY version fixes it.
+
+Run this inside WSL:
+
+$ sudo apt install pinentry-tty
+
+Then configure GPG:
+
+$ echo "pinentry-program /usr/bin/pinentry-tty" >> ~/.gnupg/gpg-agent.conf
+
+$ gpgconf --kill gpg-agent
+
+Test signing again:
+
+$ echo test | gpg --clearsign
+
+If a passphrase prompt appears inside the terminal, this fix worked.
 
 4. Why Verified Commits Matter
 
