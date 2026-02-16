@@ -1,14 +1,13 @@
-Practical Git
-Workflows and commands for real projects.
+# Git How-Tos and Workflows: Hands-On Git for Daily Use
 
-Descriptions:
-A complete compilation of Git tutorials, practical notes, and challenges designed to guide developers from first commit to advanced workflows.
-This manual gathers every Git concept, command, and technique I’ve learned—tested in real development environments and organized for quick reference.
-A personal collection of Git practices, tips, and experiments. Built from hands-on experience, this guide aims to turn version control into second nature.
+## Description
+
+A complete compilation of Git tutorials, practical notes, and challenges designed to guide developers from first commit to advanced workflows. Built from hands-on experience, this handbook aims to turn version control into second nature.
 
 Author: Esteban Herrera
 
-Contents:
+## Content
+
 How to install Git on MS Windows
 A GIT manual, from the Book DIY Linux
 Git Tutorial for Beginners, Summary of basic commands from YouTube
@@ -54,25 +53,22 @@ The Best Way To Do A Code Review On GitHub
 Choosing a name for a Git branch
 Paste public github file content on OpenAI's ChatGPT using prompts
 
-
 Reduce the size of the repository by rewriting the branch history
 Git Large File Storage (LFS) - Replaces large files
 Git LFS servers
 What happens if you track an image using Git LFS but the Git LFS server is down
+Fix the remote error message: GH001: Large files detected
 
 Change the GitHub username
 
-TODO:
-Pending:
-- A list of git tools
-VS code Extensions
-Those installations are in the Neovim editor documentation.
+TODO: Pending topics to cover:
+- A list of Git tools: git blame, git cola, gitk, melt, from the DIY Linux book.
+- A list of extensions for VS Code, from the Developer Environment documentation.
+- A list of Neovim plugins, from the Developer Environment documentation.
+- Stash from the course from GitKraken.
+- Cherry pick from the course from GitKraken.
 
-- Stash from the course from GitKraken
-
----------------------------------------------->
-How to install Git on MS Windows
----------------------------------------------->
+## How to install Git on MS Windows
 
 To install Git on Windows, you should use the official Git for Windows installer available from the official Git website. The process is straightforward and involves downloading the executable file and running the setup wizard, generally accepting the default options. 
 Step 1: Download the installer 
@@ -110,9 +106,7 @@ Use code with caution.
 
 You can verify your settings at any time by typing git config --list. 
 
----------------------------------------------->
-A GIT manual, from the Book DIY Linux
----------------------------------------------->
+## A GIT manual, from the Book DIY Linux
 
 This manual based on the practice of version control programs, Git and Git hosting.
 The manual doesn't contain all the possible options but it's a guide.
@@ -443,9 +437,7 @@ and readme.txt files, links to Confluence (Jira, etc.), Wiki, Chat, etc. When yo
 first repo files (commit), don't $ git add the file to install the DB, instead exclude it and 
 share it as if it was was made in a copy of the server, IE: USBWebserver Trails/htdocs/.
 
--------------------------------------------------------------------------->
-Git Tutorial for Beginners, Summary of basic commands from YouTube
--------------------------------------------------------------------------->
+## Git Tutorial for Beginners, Summary of basic commands from YouTube
 
 Just my notes... decided to share in case someone wants to use them:
 
@@ -644,9 +636,7 @@ If it’s a shared branch (like main, develop, or any branch used by others), yo
 
 git push --force-with-lease origin <branch>
 
----------------------------------------------------------->
-CHALLENGE: Create a pull request on GitHub
----------------------------------------------------------->
+## CHALLENGE: Create a pull request on GitHub
 
 Challenge git commands:
 
@@ -790,9 +780,7 @@ Some steps done to deal with the errors and its consequences until it is fixed
 10. Try to avoid using $ git pull from main (to pull changes in main) until the error gets
 resolved, or you will have to repeat the directory/file removal workaround again and again every main pull.
 
--------------------------------------------------------->
-CHALLENGE: Create a new branch enhancements to ... (improve CSS styles)
--------------------------------------------------------->
+## CHALLENGE: Create a new branch enhancements to ... (improve CSS styles)
 
 Challenge Description:
 Create a new branch enhancements to improve css styles.
@@ -828,18 +816,14 @@ You can keep using the same branch (if allowed) to pull (but the branch is just 
 modify, and push more changes (such as corrections), and then pull request again.
 It is important to verify every step on GitHub to make sure that the changes are all right.
 
--------------------------------------------------------->
-Find out TODO lines in Git repo using shell commands
--------------------------------------------------------->
+## Find out TODO lines in Git repo using shell commands
 
 Use:
 $ git grep -I -l TODO | xargs -n1 git blame | grep TODO
 
 Note: You can replace the string TODO with any other text to search for and then list different results.
 
----------------------------------------------------------->
-Git, fixing common mistakes and undoing bad commits
----------------------------------------------------------->
+## Git, fixing common mistakes and undoing bad commits
 
 Git commands to run before start writing code:
 -----------------------------------------------:
@@ -1035,9 +1019,7 @@ If you have not yet pushed the commit anywhere, you can use git rebase -i to rem
 git rebase -i HEAD~N
 The ~N means rebase the last N commits (N must be a number, for example HEAD~10). Then, you can edit the file that Git presents to you to delete the offending commit. On saving that file, Git will then rewrite all the following commits as if the one you deleted didn't exist.
 
------------------------------------------------->
-Git commands for files and directories
------------------------------------------------->
+##  Git commands for files and directories
 
 ------- SHELL COMMANDS: --------------------
 
@@ -1100,9 +1082,7 @@ $ git rm file1
 Finally, delete it (for directories):
 $ git rm -r directory/
 
-------------------------------------------------------->
-Create and set up a new repository on github.com
-------------------------------------------------------->
+## Create and set up a new repository on github.com
 
 References:
 Web: https://www.theodinproject.com/paths/foundations/courses/foundations/lessons/setting-up-git
@@ -1139,9 +1119,7 @@ $ chmod +x PROJECTDIR/thisfile
 - Publish a basic html repository from github:
 Go to the specific repository, next go to Settings, and select the menu option Pages
 
------------------------------------------------------------------------------>
-Create new SSH keys for GitHub repo access from another computer or OS
------------------------------------------------------------------------------>
+## Create new SSH keys for GitHub repo access from another computer or OS
 
 After a period of time, after a comamnd to connect to your repository online like this:
 
@@ -1183,9 +1161,7 @@ $ code .
 
 Or, open VS Code wherever and select `File > Open Folder`.
 
--------------------------------------------------------->
-Verified vs unverified commits (GPG key)
--------------------------------------------------------->
+## Verified vs unverified commits (GPG key)
 
 Topic: GPG keys.
 https://github.com/settings/keys
@@ -1342,9 +1318,7 @@ Commit made on a machine without your configured GPG key.
 | Verified          | ✅ Yes            | ✅ Yes                         | ✅ Verified     |
 | Unverified        | ❌ No / ❌ Invalid | ❌ No / Mismatch               | ❌ Unverified   |
 
--------------------------------------------------------->
-Git Stash
--------------------------------------------------------->
+## Git Stash
 
 Using Stash
 
@@ -1425,15 +1399,11 @@ Using Stash
 
 This version allows you to stash and pop individual files while maintaining a clear flow for handling urgent tasks.
 
--------------------------------------------------------->
-Create and set up a new repository on gitlab.com
--------------------------------------------------------->
+## Create and set up a new repository on gitlab.com
 
 TODO:
 
--------------------------------------------------------->
-Reconfigure git user and email on a fresh OS installation before running any new commit
--------------------------------------------------------->
+## Reconfigure git user and email on a fresh OS installation before running any new commit
 
 Configure user and email to change auto setup values on a fresh git installation before proceed with the first commit. Otherwise, git will store the commit using the host credentials. Hopefully, this commit can be amended and would me better to amend the commit before the next push to the origin if exists.
 
@@ -1450,118 +1420,85 @@ After doing this, you may fix the identity used for this commit with:
 git commit --amend --reset-author
 1 file changed, insertions(+), ℗ deletions(-) mode change 100644 -> 100755 Module5/Split/Split.txt
 
--------------------------------------------------------->
-git config – How to Configure Git Settings to Improve Your Development Workflow
--------------------------------------------------------->
+##  git config – How to Configure Git Settings to Improve Your Development Workflow
 
 TODO:
 
 Web: https://www.freecodecamp.org/news/git-config-how-to-configure-git-settings/
 
--------------------------------------------------------->
-git restore
--------------------------------------------------------->
+## git restore
 
 TODO:
 
 Web: https://www.git-tower.com/learn/git/commands/git-restore
 
--------------------------------------------------------->
-Git Reset to Remote Head – How to Reset a Remote Branch to Origin
--------------------------------------------------------->
+## Git Reset to Remote Head – How to Reset a Remote Branch to Origin
 
 TODO:
 
 Web: https://www.freecodecamp.org/news/git-reset-to-remote-head-how-to-reset-a-remote-branch-to-origin/
 
--------------------------------------------------------->
-Git Rename Branch – How to Change a Local Branch Name
--------------------------------------------------------->
+##  Git Rename Branch – How to Change a Local Branch Name
 
 TODO:
 
 Web: https://www.freecodecamp.org/news/git-rename-branch-how-to-change-a-local-branch-name/
 
--------------------------------------------------------->
-Git Fetch vs Pull: What's the Difference Between the Git Fetch and Git Pull Commands?
--------------------------------------------------------->
+## Git Fetch vs Pull: What's the Difference Between the Git Fetch and Git Pull Commands?
 
 TODO:
 
 Web: https://www.freecodecamp.org/news/git-fetch-vs-pull/#:~:text=git%20fetch%20is%20the%20command,changes%20from%20the%20remote%20repository.
 
--------------------------------------------------------->
-Git diff Command – How to Compare Changes in Your Code
--------------------------------------------------------->
+## Git diff Command – How to Compare Changes in Your Code
 
 TODO: 
 
 Web: https://www.freecodecamp.org/news/git-diff-command/
 
--------------------------------------------------------->
-How to Write Better Git Commit Messages – A Step-By-Step Guide
--------------------------------------------------------->
+## How to Write Better Git Commit Messages – A Step-By-Step Guide
 
 TODO:
 
 Web: https://www.freecodecamp.org/news/how-to-write-better-git-commit-messages/
 
--------------------------------------------------------->
-How to Write Good Commit Messages: A Practical Git Guide
--------------------------------------------------------->
+## How to Write Good Commit Messages: A Practical Git Guide
 
 Web: https://www.freecodecamp.org/news/writing-good-commit-messages-a-practical-guide/
 
--------------------------------------------------------->
-Which commit message convention do you use at work?
--------------------------------------------------------->
+## Which commit message convention do you use at work?
 
 Web: https://hashnode.com/post/which-commit-message-convention-do-you-use-at-work-ck3e4jbdd00zyo4s1h7mc7e0g
 
--------------------------------------------------------->
-How to Write Good Commit Messages with Commitlint
--------------------------------------------------------->
+## How to Write Good Commit Messages with Commitlint
 
 TODO:
 
 Web: https://www.freecodecamp.org/news/how-to-use-commitlint-to-write-good-commit-messages/
 
-
--------------------------------------------------------->
-GitHub Skills
--------------------------------------------------------->
+## GitHub Skills
 
 TODO:
 
 https://skills.github.com/
 
-
--------------------------------------------------------->
-How to Setup a CI/CD Pipeline with GitHub Actions and AWS
--------------------------------------------------------->
+## How to Setup a CI/CD Pipeline with GitHub Actions and AWS
 
 TODO:
 
 Web: https://www.freecodecamp.org/news/how-to-setup-a-ci-cd-pipeline-with-github-actions-and-aws/
 
-
--------------------------------------------------------->
-Is there a way to know who downloads my Github repository
--------------------------------------------------------->
+## Is there a way to know who downloads my Github repository
 
 TODO:
 
 Web: https://stackoverflow.com/questions/36854401/is-there-a-way-to-know-who-downloads-my-github-repository
 
--------------------------------------------------------->
-GitHub: Tab size preferences. Emoji skin tone preferences
--------------------------------------------------------->
+## GitHub: Tab size preferences. Emoji skin tone preferences
 
 Go to: https://github.com/settings/appearance
 
--------------------------------------------------------->
-Git Blame commands
--------------------------------------------------------->
+## Git Blame commands
 
 View all Lines Authored by Specified User:
 $ git log -p --author=Esteban index.html
@@ -1615,9 +1552,7 @@ Getting Help:
 $ man git-blame
 $ git help blame
 
----------------------------------------------->
-Summary of Commands to Show Changes VS Git Diff Comparison Commands
----------------------------------------------->
+## Summary of Commands to Show Changes VS Git Diff Comparison Commands
 
 Summary of Commands to Show Changes VS Git Diff Comparison Commands
 
@@ -1649,9 +1584,7 @@ Git Diff Comparison Commands
 | `git diff -r HEAD filename` | Compare a **staged file** with the **last committed version**.       |
 | `git diff -r HEAD`          | Compare **all staged files** with their **last committed versions**. |
 
----------------------------------------------->
-Resolving a conflict
----------------------------------------------->
+## Resolving a conflict
 
 If you just pushed changes in a commit but you realize you need to amend the commit message.
 
@@ -1712,9 +1645,7 @@ We accidentally left off a file that we meant to commit
 Alternative to:
 - If you have already pushed the commit to GitHub, you will have to force push a commit with an amended message:
 
----------------------------------------------->
-Undoing Changes in Git: revert, reset, checkout, and clean – When and How to Use Them
----------------------------------------------->
+## Undoing Changes in Git: revert, reset, checkout, and clean – When and How to Use Them
 
 git revert allows you to undo a change in a shared branch.
 
@@ -1808,9 +1739,7 @@ git rebase integrates source branch commits into the target branch, it does not 
 
 git rebase
 
----------------------------------------------->
-Restoring an old version of a file
----------------------------------------------->
+## Restoring an old version of a file
 
 git checkout -- filename
 
@@ -1820,41 +1749,29 @@ git checkout dc9d8fac mental_health_survey.csv
 This was the second to last commit, so another approach is:
 git checkout HEAD~1 mental_health_survey.csv
 
--------------------------------------------------------->
-5 tips to improve your Code Reviews on GitHub
--------------------------------------------------------->
+
+## 5 tips to improve your Code Reviews on GitHub
 
 https://dev.to/this-is-learning/5-tips-to-improve-your-code-reviews-on-github-gja
 
--------------------------------------------------------->
-GitHub: Start with a pull requested
--------------------------------------------------------->
+## GitHub: Start with a pull requested
 
 Web: https://github.com/features/code-review
 
--------------------------------------------------------->
-GitHub: About pull request reviews
--------------------------------------------------------->
+## GitHub: About pull request reviews
 
 Web: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/about-pull-request-reviews
 
--------------------------------------------------------->
-Managing code review settings for your team
--------------------------------------------------------->
+## Managing code review settings for your team
 
 Web: https://docs.github.com/en/organizations/organizing-members-into-teams/managing-code-review-settings-for-your-team
 
--------------------------------------------------------->
-The Best Way To Do A Code Review On GitHub
--------------------------------------------------------->
+## The Best Way To Do A Code Review On GitHub
 
 The Best Way To Do A Code Review On GitHub:
 Web: https://linearb.io/blog/code-review-on-github/
 
-
--------------------------------------------------------->
-Choosing a name for a Git branch
--------------------------------------------------------->
+## Choosing a name for a Git branch
 
 When choosing a name for a Git branch, it's helpful to use descriptive and meaningful names that convey the purpose or goal of the branch. Since you want to test the implementation of "Whisper" in your project but are unsure if it will be implemented, you could consider a branch name like:
 
@@ -1868,9 +1785,7 @@ experiment/estebanways
 
 Remember to prefix the branch name with either feature/, experiment/, or dev/ to maintain consistency with Git branch naming conventions. Additionally, feel free to customize the branch name further based on your project's naming conventions or personal preferences.
 
--------------------------------------------------------->
-Paste public github file content on OpenAI's ChatGPT using prompts
--------------------------------------------------------->
+## Paste public github file content on OpenAI's ChatGPT using prompts
 
 open https://github.com/estebanways/multiple-dev-container-vscode/blob/master/python-src/hello.py from estebaways
 
@@ -1882,9 +1797,7 @@ python
 print("Hello from Python!")
 This simple script prints the message "Hello from Python!" to the console.
 
--------------------------------------------------------->
-Reduce the size of the repository by rewriting the branch history
--------------------------------------------------------->
+## Reduce the size of the repository by rewriting the branch history
 
 You have a Git repository that is used by your team to collaborate on a project. The repo contains a single branch with a long history of changes.
 You need to reduce the size of the repository by rewriting the branch history.
@@ -1895,9 +1808,7 @@ git filter-branch
 
 git filter-repo
 
--------------------------------------------------------->
-Git Large File Storage (LFS) - Replaces large files
--------------------------------------------------------->
+## Git Large File Storage (LFS) - Replaces large files
 
 Git Large File Storage (LFS) - Replaces large files such as audio samples, videos, datasets, and graphics...
 
@@ -1931,9 +1842,7 @@ Check out their wiki, discussion forum, and documentation for help with any ques
 
 Information from: https://git-lfs.com/
 
--------------------------------------------------------->
-Git LFS servers
--------------------------------------------------------->
+## Git LFS servers
 
 Git LFS servers are useful for large files that don’t work well in normal Git repositories, because Git stores all history in the .git folder, which grows quickly with big files. Typical use cases include:
 
@@ -2218,9 +2127,7 @@ server {
 
 Done! You now have a private Git LFS server running in Docker. All your large files will be stored in ~/git-lfs-server/data.
 
-------------------------------------------------------------------------------->
-What happens if you track an image using Git LFS but the Git LFS server is down
-------------------------------------------------------------------------------->
+## What happens if you track an image using Git LFS but the Git LFS server is down
 
 What happens if you track an image using Git LFS but the Git LFS server is down when you commit and push?
 
@@ -2323,9 +2230,181 @@ This way, all LFS operations stay local until you push to the real remote.
 
 Key Takeaway: Git LFS lets you commit and work locally offline, because the large files are cached. The only limitation is that collaborators can’t fetch LFS files until the server is online.
 
--------------------------------------------------------->
-Change the GitHub username
--------------------------------------------------------->
+## Fix the remote error message: GH001: Large files detected
+
+I removed the file but github error persists:
+
+```output
+origin main 
+Enumerating objects: 29, done.
+Counting objects: 100% (29/29), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (24/24), done.
+Writing objects: 100% (24/24), 228.44 MiB | 5.69 MiB/s, done.
+Total 24 (delta 9), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (9/9), completed with 3 local objects.
+remote: error: Trace: 2e227e872bb6b9bb8c803c758d30fafe82681a1f70a38b6e1c849b1ab876eb44
+remote: error: See https://gh.io/lfs for more information.
+remote: error: File 03. Spec-Driven Development and Context Engineering/Mastering Context Engineering 2/Mastering Context Engineering 2 720p.mp4 is 239.72 MB; this exceeds GitHub's file size limit of 100.00 MB
+remote: error: GH001: Large files detected. You may want to try Git Large File Storage - https://git-lfs.github.com.
+To github.com:estebantechdev/Spec-Driven_Development.git
+ ! [remote rejected] main -> main (pre-receive hook declined)
+
+```
+ 
+This happens because the file is still in your Git history, even if you deleted it from the folder.
+
+GitHub rejects the push because that 239 MB MP4 exists in a previous commit, and GitHub scans the entire history, not just the latest state.
+
+Deleting the file locally is not enough — you must rewrite history to remove it completely.
+
+Why the Error Persists
+
+- You added the video.
+
+- You committed it.
+
+- Later you deleted it.
+
+- But the commit that added it is still part of the branch history.
+
+- GitHub blocks the push because one commit contains a file >100 MB.
+
+### Solution — Remove the File From History
+
+#### Step 1 — Install git filter-repo (recommended)
+
+Linux / macOS
+
+```shell
+pip install git-filter-repo
+```
+
+Windows (PowerShell)
+
+```shell
+pip install git-filter-repo
+```
+
+#### Step 2 — Run Filter
+
+From the root of your repository:
+
+```shell
+git filter-repo --path "03. Spec-Driven Development and Context Engineering/Mastering Context Engineering 2/Mastering Context Engineering 2 720p.mp4" --invert-paths
+```
+
+This command means:
+
+Find that file in all commits
+
+Remove it everywhere
+
+Rewrite history
+
+#### Step 3 — Force Push
+
+```shell
+git push origin main --force
+```
+
+Now GitHub will accept it because the large file no longer exists in history.
+
+Important Notes
+
+If This Is a New Repo
+
+This is safe and easy.
+
+If Others Cloned the Repo
+
+They will need to re-clone, because history changed.
+
+### Alternative (Nuclear Option — Easiest for New Projects)
+
+If you don’t care about history yet:
+
+```shell
+rm -rf .git
+git init
+git config --global init.defaultBranch main
+git add .
+git commit -m "clean start"
+git branch -M main
+git remote add origin <repo-url>
+# Example:
+# git remote add origin git@github.com:estebantechdev/Spec-Driven_Development.git
+git push -u origin main
+```
+
+This completely resets history and guarantees no large files remain.
+
+If you made changes after receiving the error you could require to merge: 
+
+```shell
+git config pull.rebase false
+git pull origin main  # Or the branch use
+```
+
+If you receive an error which includes:
+
+```output
+fatal: refusing to merge unrelated histories
+```
+
+Note: At this point you can deny the merge locally (steps not included here). On the contrary, we are allowing the unrelated histories by using the following command:
+
+```shell
+git pull origin main --allow-unrelated-histories
+```
+
+If you receive an error which includes:
+
+```output
+Automatic merge failed; fix conflicts and then commit the result.
+```
+
+```shell
+git status
+git diff  # Do not edit files(s) just yet
+git add .
+git commit -m "Resolve merge conflicts."
+git log
+git push origin main
+```
+
+This will add the change(s) shown on screen. You have pushed without receiving errors this time.
+
+Verify changes, accept them or or re-edit the file(s) involved in the conflict accordingly, save the files and then push again no blocking errors.
+
+```shell
+# git pull origin main
+# git status
+git commit -m "Accept current changes."
+git push origin main
+```
+
+
+
+### Prevent It in the Future
+
+Add a .gitignore:
+
+```gitignore
+*.mp4
+*.zip
+*.iso
+*.mov
+
+```
+
+### Key Idea
+
+GitHub rejects history, not just current files.
+
+You must erase the large file from commits, not only from the folder.
+
+## Change the GitHub username
 
 Go to: https://github.com/settings/admin, and click on teh button to chage the username.
 
@@ -2369,27 +2448,7 @@ Here is a hyphotetical list of things the change affects for you to consider:
 
 [x] Datacamp
 
-[x] Datacamp
-
 [x] Resume
 
 [x] Hoja de Vida (CV)
 
--------------------------------------------------------->
-
--------------------------------------------------------->
-
-
--------------------------------------------------------->
-
--------------------------------------------------------->
-
-
--------------------------------------------------------->
-
--------------------------------------------------------->
-
-
--------------------------------------------------------->
-
--------------------------------------------------------->
