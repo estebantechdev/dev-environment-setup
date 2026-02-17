@@ -1,4 +1,4 @@
-# DeveloperEnvironment
+# dev-environment-setup
 
 ## Description
 
@@ -19,8 +19,12 @@ This repository provides a comprehensive and customizable development environmen
 ## Getting Started
 
 1. Clone the repository to your local machine.
-2. Follow the step-by-step instructions in the documentation to set up your customized development environment.
-3. Start coding with confidence in your well-configured environment!
+
+2. Open the [Documentation](documentation.md) file.
+
+3. Follow the step-by-step instructions to set up your customized development environment.
+
+4. Start coding with confidence in your well-configured environment!
 
 ## Contributions
 

@@ -1,10 +1,8 @@
-# Developer Environment
-
-This document consist of a custom development environment for Web Development with VS Code.
+# dev-environment-setup
 
 ## Author
 
-<br />**Esteban Herrera**
+<br />**Esteban Herrera**  
 <br />**Email:** stv.herrera@gmail.com
 
 ## Conventions used in this document
