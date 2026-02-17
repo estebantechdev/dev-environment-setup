@@ -249,182 +249,182 @@
   + [Neovim](./documents/Editors/Neovim/Neovim.md)
     + Neovim Installation
     + Keyboard Shortcuts
-    + Open vim VS nvim
-    + Type in after entering nvim
-    + Change from **INSERT** or another mode to **NORMAL** mode
-    + Exit from Vim or Neovim if you haven't edited
-    + Exit from Vim or Neovim if you have edited but don't want to save changes
-    + Open a file with vim or nvim
-    + Move the cursor to the left (<) (NORMAL mode)
-    + Move the cursor to the right (>) (NORMAL mode)
-    + Move the cursor up (^) (NORMAL mode)
-    + Move the cursor down (v) (NORMAL mode)
-    + Move the cursor to the beginning of the next object or word (>>) (NORMAL mode)
-    + Move the cursor forwards through the beginning of words or objects (>>) (NORMAL mode)
-    + Move the cursor backwards through the beginning of words or objects (<<) (NORMAL mode)
-    + Move the cursor forwards through the end of words or objects (>>) (NORMAL mode)
-    + Insert text in the position before the current position (INSERT mode)
-    + Insert text in the position after the current position (INSERT mode)
-    + Insert text at the end of the line (INSERT mode)
-    + Delete characters (NORMAL mode)
-    + Save or write changes to disk (NORMAL mode)
-    + Save changes to disk and exit the file in one step (NORMAL mode)
-    + Go to the definition of the word, being this a function, etc., in the same file (NORMAL mode)
-    + Go to the definition of the word, being this a function, etc., in the "imported" file (NORMAL mode)
-    + Come back to the previous file you were working on before going to the definition, to the line mentioning the file, for example the mention of "helper.js" (NORMAL mode)
-    + Come back to the first definition word, function, etc., for example, the mention of "help()" (NORMAL mode)
-    + History buffers (NORMAL mode)
-    + Delete a word (NORMAL mode)
-    + Delete a sequence of words (NORMAL mode)
-    + Undo one change (NORMAL mode)
-    + Undo many changes (NORMAL mode)
-    + Redo changes (NORMAL mode)
-    + Delete a complete line (NORMAL mode)
-    + Delete many lines, one by one (NORMAL mode)
-    + Combine operators and movements (NORMAL mode)
-    + Deletes from left to right, from the cursor position, including it, to the beginning of the next object or word, including the free spaces between the two words (NORMAL mode)
-    + Deletes from right to left, from the position before the cursor position backwards to the beginning of the word or object (NORMAL mode). If the cursor is at the first character, the deletion includes the previous word or object.
-    + Deletes from left to right, from the cursor position, including it, to the end of the object or word, without including any free space between that word and the next word (NORMAL mode)
-    + Combine operators, movements, and numbers (NORMAL mode)
-    + Delete words in one combination, in order to avoid using d + w many times (NORMAL mode)
-    + Cut a complete line and paste it below another line (NORMAL mode)
-    + Paste a complete line above another line (NORMAL mode)
-    + Cut a character to clipboard and paste it somewhere else (NORMAL mode)
-    + Cut to the clipboard many text lines at a time (NORMAL mode)
-    + Replace a character (INSERT mode)
-    + Replace character(s) (INSERT mode)
-    + Replace a character (NORMAL mode)
-    + Delete a word to type in a replacement with the Change Operator (INSERT mode)
-    + Identify the current line of code (NORMAL mode)
-    + Go to the beginning of file (NORMAL mode)
-    + Go to the end of file (NORMAL mode)
-    + Go to any line of code (NORMAL mode)
-    + Go back to the previous line of code after moving to a new sector
-    + Go down or up in the text
-    + Move cursor to end or the beginning of file in Neovim (NORMAL mode)
-    + Neovim tasks compared to VS Code tasks
-    + Find text (NORMAL mode)
-    + Look for occurrences in the current file (NORMAL mode)
-    + Move forwards through Find text results (NORMAL mode)
-    + Go to the other pair bracket from the current bracket (NORMAL mode)
-    + Select and Remove a code block in vim (NORMAL mode)
-    + Go to beginning of the line (NORMAL mode)
-    + Go to end of the line (NORMAL mode)
-    + Replace a text in-line with (NORMAL mode)
-    + Replace all the occurrence of a text in-line with (NORMAL mode)
-    + Replace a string across a file without asking for any confirmation (NORMAL mode)
-    + Replace a string across a file asking for every individual occurrence confirmation (NORMAL mode)
-    + Replace all the text occurrences in a particular range of lines (NORMAL mode)
-    + Open a new line below the current line (NORMAL mode)
-    + Open a new line above the current line (NORMAL mode)
-    + Enter the REPLACE mode to replace characters (NORMAL mode)
-    + Go to the VISUAL mode to copy or cut and delete or paste text (NORMAL mode)
-    + Tag Completion
-    + Decrease the size of the text
-    + Increase the size of the text
-    + Paste text from external clipboard
-    + Run a Bash command in the Neovim's command line
-    + How to Delete all Text in a File Using Vi/Vim Editor (NORMAL mode)
-    + Save new/untitled file or Save As file from Neovim:
-    + File operations:
-    + End of line and end of file
-    + Setting up Vim or Neovim
-    + Install terminal enhancers Zplug, fzf, ripgrep, igrep, bat, Vifm
-    + Allow Neovim to use the Vim configuration file (only for Neovim users)
-    + Create a custom config directory, Git repository and files
-    + Add new basic features to nvim in the config file ~/.vimrc
-    + Install the plugin manager
-    + Install vim-plug for plugins. Install Vim themes
-    + Install vim-plug plugins: Easymotion
-    + Install vim-plug plugins: Nerdtree
-    + Navigating between open files
-    + Custom Neovim keyboard shortcuts
-    + Install vim-plug plugins: ultisnips
-    + Kite installation
-    + Install vim-plug plugins: coc.nvim
-    + coc-kite installation
-    + Install vim-plug plugins: vim-css-color
-    + Install vim-plug plugins: vim-dispatch
-    + Install vim-plug plugins: vim-fugitive
-    + Install vim-plug plugins: editorconfig-vim
-    + Install vim-plug plugins: fzf.vim
-    + Install vim-plug plugins: Copilot.vim
-    + Install vim-plug plugins: vim-styled-components
-    + Install vim-plug plugins: polyglot
-    + Install vim-plug plugins: vim-repeat
-    + Install vim-plug plugins: vim-signify
-    + Install vim-plug plugins: indentline
-    + Install vim-plug plugins: nerdcommenter
-    + Install vim-plug plugins: Installing a statusline
-    + Nerd-fonts
-    + Install vim-plug plugins: vim-devicons
-    + Alacritty
-    + WezTerm
-    + Install vim-plug plugins: vim-wakatime
-    + Run the current file with Node.js from Neovim
-    + Install vim-plug plugins: Vimux
-    + Install vim-plug plugins: vimux-jest-test
-    + Install vim-plug plugins: vim-test
-    + Install vim-plug plugins: closetag.vim
-    + Install vim-plug plugins: vim-surround
-    + Install vim-plug plugins: codeium.vim
-    + Install vim-plug plugins: Startify
-    + Install vim-plug plugins: vim-gitbranch
-    + Install vim-plug plugins: vim-visual-multi
-    + Install vim-plug plugins: coc-sh
-    + Install vim-plug plugins: vim-shellcheck
-    + Install vim-plug plugins: vim-bash
-    + Install vim-plug plugins: bats.vim
-    + Debugging Python scripts
-    + Debugging Node scripts
-    + Install vim-plug plugins: commentary.vim
-    + Install Vimscript plugins: markdown-preview.nvim
-    + Activate spell checker in Neovim
-    + Install extension for vim-polyglot: python-syntax
-    + Install extension for coc.nvim: coc-snippets
-    + Install extension for coc.nvim: coc-pyright
-    + coc-snippets or UltiSnips
-    + Install extension for Ultisnips: vim-react-snippets
-    + Adding custom UltiSnips snippets
-    + Install extension for ultisnips: vim-snippets
-    + Install Vimscript plugins: vim-prettier
-    + Install Vimscript plugins: vim-transparent
-    + Reorganizing the file ~/config/.vimrc
-    + Install Vimscript plugins: lightline-coc
-    + Learning: Basic Lua based Neovim configuration
-    + The Vimscript status of the directory **~/.vim/**
-    + The new Vimscript plus Lua status of the directory **~/.vim/**
-    + The initial content of the file ~/config/.vim/.init.lua
-    + Install the Lua and Vimscript plugin manager packer.nvim
-    + Install the Lua plugin manager lazy.nvim
-    + Install Vimscript plugins with Lua: junegunn/vim-easy-align
-    + Install Lua plugins: Abstract-cs
-    + Install Lua plugins: which-key.nvim
-    + Install Lua plugins: LuaSnip
-    + Install Lua plugins: friendly-snippets
-    + Install Lua plugins: bufferline.nvim
-    + Install Lua plugins: yode-nvim
-    + Install Lua plugins: vim-rest-console
-    + Install Lua plugins: telescope.nvim
-    + Install Lua plugins: neovim-session-manager
-    + Install Lua plugins: telescope-ui-select.nvim
-    + Install Lua plugins: llm.nvim
-    + Install Lua plugins: nvim-dev-container
-    + More Lua plugins
-    + Install Neovide
-    + Complete neovim keymapping cheet sheet
-    + Neovim keymap image
-    + PacVim
-    + Input Remapper
-    + Create a Virtual Machine for Development
-    + References in Spanish
-    + Technology / Extension
-    + Technology / Extension
-    + Technology / Extension
+      + Open vim VS nvim
+      + Type in after entering nvim
+      + Change from **INSERT** or another mode to **NORMAL** mode
+      + Exit from Vim or Neovim if you haven't edited
+      + Exit from Vim or Neovim if you have edited but don't want to save changes
+      + Open a file with vim or nvim
+      + Move the cursor to the left (<) (NORMAL mode)
+      + Move the cursor to the right (>) (NORMAL mode)
+      + Move the cursor up (^) (NORMAL mode)
+      + Move the cursor down (v) (NORMAL mode)
+      + Move the cursor to the beginning of the next object or word (>>) (NORMAL mode)
+      + Move the cursor forwards through the beginning of words or objects (>>) (NORMAL mode)
+      + Move the cursor backwards through the beginning of words or objects (<<) (NORMAL mode)
+      + Move the cursor forwards through the end of words or objects (>>) (NORMAL mode)
+      + Insert text in the position before the current position (INSERT mode)
+      + Insert text in the position after the current position (INSERT mode)
+      + Insert text at the end of the line (INSERT mode)
+      + Delete characters (NORMAL mode)
+      + Save or write changes to disk (NORMAL mode)
+      + Save changes to disk and exit the file in one step (NORMAL mode)
+      + Go to the definition of the word, being this a function, etc., in the same file (NORMAL mode)
+      + Go to the definition of the word, being this a function, etc., in the "imported" file (NORMAL mode)
+      + Come back to the previous file you were working on before going to the definition, to the line mentioning the file, for example the mention of "helper.js" (NORMAL mode)
+      + Come back to the first definition word, function, etc., for example, the mention of "help()" (NORMAL mode)
+      + History buffers (NORMAL mode)
+      + Delete a word (NORMAL mode)
+      + Delete a sequence of words (NORMAL mode)
+      + Undo one change (NORMAL mode)
+      + Undo many changes (NORMAL mode)
+      + Redo changes (NORMAL mode)
+      + Delete a complete line (NORMAL mode)
+      + Delete many lines, one by one (NORMAL mode)
+      + Combine operators and movements (NORMAL mode)
+      + Deletes from left to right, from the cursor position, including it, to the beginning of the next object or word, including the free spaces between the two words (NORMAL mode)
+      + Deletes from right to left, from the position before the cursor position backwards to the beginning of the word or object (NORMAL mode). If the cursor is at the first character, the deletion includes the previous word or object.
+      + Deletes from left to right, from the cursor position, including it, to the end of the object or word, without including any free space between that word and the next word (NORMAL mode)
+      + Combine operators, movements, and numbers (NORMAL mode)
+      + Delete words in one combination, in order to avoid using d + w many times (NORMAL mode)
+      + Cut a complete line and paste it below another line (NORMAL mode)
+      + Paste a complete line above another line (NORMAL mode)
+      + Cut a character to clipboard and paste it somewhere else (NORMAL mode)
+      + Cut to the clipboard many text lines at a time (NORMAL mode)
+      + Replace a character (INSERT mode)
+      + Replace character(s) (INSERT mode)
+      + Replace a character (NORMAL mode)
+      + Delete a word to type in a replacement with the Change Operator (INSERT mode)
+      + Identify the current line of code (NORMAL mode)
+      + Go to the beginning of file (NORMAL mode)
+      + Go to the end of file (NORMAL mode)
+      + Go to any line of code (NORMAL mode)
+      + Go back to the previous line of code after moving to a new sector
+      + Go down or up in the text
+      + Move cursor to end or the beginning of file in Neovim (NORMAL mode)
+      + Neovim tasks compared to VS Code tasks
+      + Find text (NORMAL mode)
+      + Look for occurrences in the current file (NORMAL mode)
+      + Move forwards through Find text results (NORMAL mode)
+      + Go to the other pair bracket from the current bracket (NORMAL mode)
+      + Select and Remove a code block in vim (NORMAL mode)
+      + Go to beginning of the line (NORMAL mode)
+      + Go to end of the line (NORMAL mode)
+      + Replace a text in-line with (NORMAL mode)
+      + Replace all the occurrence of a text in-line with (NORMAL mode)
+      + Replace a string across a file without asking for any confirmation (NORMAL mode)
+      + Replace a string across a file asking for every individual occurrence confirmation (NORMAL mode)
+      + Replace all the text occurrences in a particular range of lines (NORMAL mode)
+      + Open a new line below the current line (NORMAL mode)
+      + Open a new line above the current line (NORMAL mode)
+      + Enter the REPLACE mode to replace characters (NORMAL mode)
+      + Go to the VISUAL mode to copy or cut and delete or paste text (NORMAL mode)
+      + Tag Completion
+      + Decrease the size of the text
+      + Increase the size of the text
+      + Paste text from external clipboard
+      + Run a Bash command in the Neovim's command line
+      + How to Delete all Text in a File Using Vi/Vim Editor (NORMAL mode)
+      + Save new/untitled file or Save As file from Neovim:
+      + File operations:
+      + End of line and end of file
+      + Setting up Vim or Neovim
+      + Install terminal enhancers Zplug, fzf, ripgrep, igrep, bat, Vifm
+      + Allow Neovim to use the Vim configuration file (only for Neovim users)
+      + Create a custom config directory, Git repository and files
+      + Add new basic features to nvim in the config file ~/.vimrc
+      + Install the plugin manager
+      + Install vim-plug for plugins. Install Vim themes
+      + Install vim-plug plugins: Easymotion
+      + Install vim-plug plugins: Nerdtree
+      + Navigating between open files
+      + Custom Neovim keyboard shortcuts
+      + Install vim-plug plugins: ultisnips
+      + Kite installation
+      + Install vim-plug plugins: coc.nvim
+      + coc-kite installation
+      + Install vim-plug plugins: vim-css-color
+      + Install vim-plug plugins: vim-dispatch
+      + Install vim-plug plugins: vim-fugitive
+      + Install vim-plug plugins: editorconfig-vim
+      + Install vim-plug plugins: fzf.vim
+      + Install vim-plug plugins: Copilot.vim
+      + Install vim-plug plugins: vim-styled-components
+      + Install vim-plug plugins: polyglot
+      + Install vim-plug plugins: vim-repeat
+      + Install vim-plug plugins: vim-signify
+      + Install vim-plug plugins: indentline
+      + Install vim-plug plugins: nerdcommenter
+      + Install vim-plug plugins: Installing a statusline
+      + Nerd-fonts
+      + Install vim-plug plugins: vim-devicons
+      + Alacritty
+      + WezTerm
+      + Install vim-plug plugins: vim-wakatime
+      + Run the current file with Node.js from Neovim
+      + Install vim-plug plugins: Vimux
+      + Install vim-plug plugins: vimux-jest-test
+      + Install vim-plug plugins: vim-test
+      + Install vim-plug plugins: closetag.vim
+      + Install vim-plug plugins: vim-surround
+      + Install vim-plug plugins: codeium.vim
+      + Install vim-plug plugins: Startify
+      + Install vim-plug plugins: vim-gitbranch
+      + Install vim-plug plugins: vim-visual-multi
+      + Install vim-plug plugins: coc-sh
+      + Install vim-plug plugins: vim-shellcheck
+      + Install vim-plug plugins: vim-bash
+      + Install vim-plug plugins: bats.vim
+      + Debugging Python scripts
+      + Debugging Node scripts
+      + Install vim-plug plugins: commentary.vim
+      + Install Vimscript plugins: markdown-preview.nvim
+      + Activate spell checker in Neovim
+      + Install extension for vim-polyglot: python-syntax
+      + Install extension for coc.nvim: coc-snippets
+      + Install extension for coc.nvim: coc-pyright
+      + coc-snippets or UltiSnips
+      + Install extension for Ultisnips: vim-react-snippets
+      + Adding custom UltiSnips snippets
+      + Install extension for ultisnips: vim-snippets
+      + Install Vimscript plugins: vim-prettier
+      + Install Vimscript plugins: vim-transparent
+      + Reorganizing the file ~/config/.vimrc
+      + Install Vimscript plugins: lightline-coc
+      + Learning: Basic Lua based Neovim configuration
+      + The Vimscript status of the directory **~/.vim/**
+      + The new Vimscript plus Lua status of the directory **~/.vim/**
+      + The initial content of the file ~/config/.vim/.init.lua
+      + Install the Lua and Vimscript plugin manager packer.nvim
+      + Install the Lua plugin manager lazy.nvim
+      + Install Vimscript plugins with Lua: junegunn/vim-easy-align
+      + Install Lua plugins: Abstract-cs
+      + Install Lua plugins: which-key.nvim
+      + Install Lua plugins: LuaSnip
+      + Install Lua plugins: friendly-snippets
+      + Install Lua plugins: bufferline.nvim
+      + Install Lua plugins: yode-nvim
+      + Install Lua plugins: vim-rest-console
+      + Install Lua plugins: telescope.nvim
+      + Install Lua plugins: neovim-session-manager
+      + Install Lua plugins: telescope-ui-select.nvim
+      + Install Lua plugins: llm.nvim
+      + Install Lua plugins: nvim-dev-container
+      + More Lua plugins
+      + Install Neovide
+      + Complete neovim keymapping cheet sheet
+      + Neovim keymap image
+      + PacVim
+      + Input Remapper
+      + Create a Virtual Machine for Development
+      + References in Spanish
+      + Technology / Extension
+      + Technology / Extension
+      + Technology / Extension
   + [Kate](./documents/Editors/Kate/Kate.md)
     + Kate Installation
     + Keyboard Shortcuts
-    + VI Mode
+      + VI Mode
     + Technology / Extension
     + Technology / Extension
     + Technology / Extension
