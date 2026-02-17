@@ -20,7 +20,7 @@ This repository provides a comprehensive and customizable development environmen
 
 1. Clone the repository to your local machine.
 
-2. Open the [Documentation](documentation.md) file.
+2. Open the [Documentation](documentation.md).
 
 3. Follow the step-by-step instructions to set up your customized development environment.
 
