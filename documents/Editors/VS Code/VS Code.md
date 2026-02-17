@@ -2,7 +2,7 @@
 
 #### VS Code Installation
 
-TODO
+TODO:
 
 #### Keyboard Shortcuts
 

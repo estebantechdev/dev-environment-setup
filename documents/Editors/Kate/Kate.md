@@ -2,11 +2,11 @@
 
 #### Kate Installation
 
-TODO
+TODO:
 
 #### Keyboard Shortcuts
 
-TODO
+TODO:
 
 ##### VI Mode
 

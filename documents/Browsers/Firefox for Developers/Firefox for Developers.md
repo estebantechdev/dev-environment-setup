@@ -4,7 +4,7 @@
 
 #### Firefox for Developers Installation
 
-TODO
+TODO:
 
 #### Keyboard Shortcuts
 

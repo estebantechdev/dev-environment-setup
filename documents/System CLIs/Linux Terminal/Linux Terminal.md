@@ -2,7 +2,7 @@
 
 #### Linux Terminal Installation
 
-TODO
+TODO:
 
 #### Keyboard Shortcuts
 

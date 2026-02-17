@@ -2,11 +2,11 @@
 
 #### Notepad++ Installation
 
-TODO
+TODO:
 
 #### Keyboard Shortcuts
 
-TODO
+TODO:
 
 #### Technology / Extension
 
