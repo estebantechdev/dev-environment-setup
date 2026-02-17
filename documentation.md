@@ -1,4 +1,4 @@
-# dev-environment-setup
+# Dev Environment Setup
 
 **Author**: Esteban Herrera  
 **GitHub**: @estebantechdev  
