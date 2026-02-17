@@ -1,9 +1,8 @@
 # dev-environment-setup
 
-## Author
-
-<br />**Esteban Herrera**  
-<br />**Email:** stv.herrera@gmail.com
+**Author**: Esteban Herrera  
+**GitHub**: @estebantechdev  
+**X.com:**: @esteban_records
 
 ## Conventions used in this document
 
